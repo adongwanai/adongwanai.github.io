@@ -3,6 +3,34 @@ import Layout from '../layouts/Layout.astro';
 import Terminal from '../components/Terminal.astro';
 import { getCollection } from 'astro:content';
 
+const projects = await getCollection('projects');
+const projectStats = await Promise.all(projects.map(async (p) => {
+    let stars = p.data.stars || "0";
+    let forks = p.data.forks || "0";
+    
+    // Extract repo from link if it's a GitHub URL
+    const match = p.data.link.match(/github\.com\/([^/]+\/[^/]+)/);
+    if (match) {
+        try {
+           const repo = match[1];
+           const res = await fetch(`https://api.github.com/repos/${repo}`);
+           if (res.ok) {
+               const data = await res.json();
+               // Only format if > 1000, otherwise show exact number
+               stars = data.stargazers_count >= 1000 
+                   ? (data.stargazers_count / 1000).toFixed(1) + 'k' 
+                   : data.stargazers_count.toString();
+               forks = data.forks_count.toString();
+           }
+        } catch (e) {
+            console.error(`Error fetching stats for ${p.data.title}:`, e);
+        }
+    }
+    return { ...p, dynamicStars: stars, dynamicForks: forks };
+}));
+
+const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
+
 ---
 
 <Layout title="阿东玩AI - Vibe Coding">
@@ -117,61 +145,42 @@ import { getCollection } from 'astro:content';
         <p class="text-gray-400">开源贡献与个人作品</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        {[
-          {
-            icon: "🤖",
-            title: "AgentGuide",
-            desc: "AI Agent 开发指南 | LangGraph 实战 | 高级 RAG | 大模型面试题库",
-            stars: "1.5k",
-            forks: "160",
-            tags: ["AI Agent", "LangGraph", "RAG"],
-            link: "https://github.com/adongwanai/AgentGuide",
-            reflection: "💡 Insight: 使用 CoT 提示词生成结构化课程大纲，极大地提升了内容连贯性。"
-          },
-          {
-            icon: "📄",
-            title: "LLM 简历模板",
-            desc: "专业的 LaTeX 简历模板，专为大模型与 Agent 算法工程师设计",
-            stars: "73",
-            forks: "37",
-            tags: ["LaTeX", "简历", "LLM"],
-            link: "https://github.com/adongwanai/LLM-Resume-Template",
-            reflection: "💡 Insight: 利用 Claude 3.5 Sonnet 将 Markdown 自动转换为精准的 LaTeX 代码。"
-          }
-        ].map((project) => (
+       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {
+          sortedProjects.map((project) => (
           <div class="spotlight-card group relative bg-secondary border border-white/10 rounded-xl p-8 hover:border-white/20 transition-colors overflow-hidden flex flex-col">
             <div class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-300 z-10"
               style="background: radial-gradient(600px circle at var(--x) var(--y), rgba(255,255,255,0.06), transparent 40%);"></div>
             
             <div class="relative z-20 flex-1 flex flex-col">
               <div class="flex justify-between items-start mb-6">
-                <div class="text-4xl">{project.icon}</div>
+                <div class="text-4xl">{project.data.icon}</div>
                 <div class="flex gap-2">
-                  <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400 border border-white/5">⭐ {project.stars}</span>
+                  <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400 border border-white/5">⭐ {project.dynamicStars}</span>
+                  <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400 border border-white/5">🍴 {project.dynamicForks}</span>
                 </div>
               </div>
               
-              <h3 class="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{project.title}</h3>
-              <p class="text-gray-400 mb-6 leading-relaxed">{project.desc}</p>
+              <h3 class="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{project.data.title}</h3>
+              <p class="text-gray-400 mb-6 leading-relaxed">{project.data.description}</p>
               
               <div class="mb-6 p-3 bg-blue-500/5 border border-blue-500/10 rounded-lg">
-                <p class="text-xs text-blue-300 font-medium italic">{project.reflection}</p>
+                <p class="text-xs text-blue-300 font-medium italic">{project.data.reflection}</p>
               </div>
               
               <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-                {project.tags.map(tag => (
+                {project.data.tags.map(tag => (
                   <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300 border border-white/5">{tag}</span>
                 ))}
               </div>
               
-              <a href={project.link} target="_blank" class="text-accent font-medium hover:text-accent-hover inline-flex items-center gap-1">
+              <a href={project.data.link} target="_blank" class="text-accent font-medium hover:text-accent-hover inline-flex items-center gap-1">
                 查看项目 <span>→</span>
               </a>
             </div>
           </div>
         ))}
-      </div>
+       </div>
     </div>
   </section>
 
@@ -314,6 +323,28 @@ import { getCollection } from 'astro:content';
                </div>
              </div>
            </div>
+        </div>
+      </div>
+      <div class="mt-20 pt-8 border-t border-white/5">
+        <div class="flex flex-col md:flex-row gap-8 justify-center md:justify-start">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">📧</span>
+            <div>
+              <div class="text-xs text-gray-500">Email</div>
+              <a href="mailto:contact@adong.ai" class="text-gray-300 hover:text-white transition-colors">contact@adong.ai</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 group relative cursor-pointer">
+            <span class="text-2xl">🟢</span>
+            <div>
+              <div class="text-xs text-gray-500">WeChat</div>
+              <div class="text-gray-300">abc061200x</div>
+            </div>
+            <!-- QR Popup -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto bg-white p-2 rounded-lg shadow-xl">
+               <div class="w-32 h-32 bg-gray-200 flex items-center justify-center text-black text-xs">QR Code</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
