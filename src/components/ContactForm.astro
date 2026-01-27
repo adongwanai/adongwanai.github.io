@@ -1,0 +1,75 @@
+---
+---
+
+<section class="py-24 relative">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">联系我</h2>
+      <p class="text-gray-400">无论是商务合作、技术咨询还是交个朋友，欢迎留言。</p>
+    </div>
+
+    <form
+      action="https://formspree.io/f/YOUR_FORM_ID"
+      method="POST"
+      class="bg-secondary border border-white/10 rounded-2xl p-8 space-y-6"
+    >
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-300 mb-2">姓名 / Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full bg-tertiary border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+            placeholder="Your Name"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-300 mb-2">邮箱 / Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full bg-tertiary border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+            placeholder="your@email.com"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">主题 / Subject</label>
+        <select
+          id="subject"
+          name="subject"
+          class="w-full bg-tertiary border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors appearance-none"
+        >
+          <option value="Business">🤝 商务合作</option>
+          <option value="Consulting">💡 技术咨询</option>
+          <option value="Job">💼 求职/招聘</option>
+          <option value="Other">👋 只是打个招呼</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">信息 / Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          class="w-full bg-tertiary border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
+          placeholder="既然来了，就聊两句吧..."
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 text-white font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] shadow-lg shadow-blue-500/25"
+      >
+        发送留言
+      </button>
+    </form>
+  </div>
+</section>

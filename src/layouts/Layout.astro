@@ -1,0 +1,72 @@
+---
+import '@fontsource/inter';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/jetbrains-mono';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = '阿东玩AI - Vibe Coding',
+  description = '大模型算法工程师 | AI Agent 开发者 | Vibe Coding 实践者'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const getPath = (path: string) => {
+  const base = import.meta.env.BASE_URL;
+  return base === '/' ? path : `${base.replace(/\/$/, '')}${path}`;
+};
+---
+
+<!doctype html>
+<html lang="zh-CN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={getPath('/favicon.svg')} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-primary text-gray-100 min-h-screen flex flex-col font-sans selection:bg-accent selection:text-white">
+    <header class="fixed top-0 left-0 right-0 bg-primary/80 backdrop-blur-md border-b border-white/10 z-50">
+      <nav class="max-w-7xl mx-auto px-6 h-[70px] flex justify-between items-center">
+        <a href={getPath('/')} class="text-xl font-bold">
+          <span class="bg-gradient-to-br from-blue-500 to-violet-600 bg-clip-text text-transparent">阿东玩AI</span>
+        </a>
+        <ul class="hidden md:flex gap-8 items-center">
+          <li><a href={getPath('/')} class="text-gray-400 hover:text-white transition-colors text-sm font-medium">首页</a></li>
+          <li><a href={getPath('/#projects')} class="text-gray-400 hover:text-white transition-colors text-sm font-medium">项目</a></li>
+          <li><a href={getPath('/#vibe-coding')} class="text-gray-400 hover:text-white transition-colors text-sm font-medium">Vibe Coding</a></li>
+          <li><a href={getPath('/#about')} class="text-gray-400 hover:text-white transition-colors text-sm font-medium">关于</a></li>
+          <li><a href="https://github.com/adongwanai" target="_blank" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">GitHub</a></li>
+          <li>
+            <a href={getPath('/skills')} class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-semibold hover:bg-accent/20 transition-all border border-accent/20 flex items-center gap-2 shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)]">
+              <span>✨</span> Agent Skills 库
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="flex-1 pt-[70px]">
+      <slot />
+    </main>
+
+    <footer class="bg-secondary border-t border-white/10 py-8 mt-auto">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-sm">&copy; {new Date().getFullYear()} 阿东玩AI. 用 Astro & Vibe Coding 构建</p>
+        <div class="flex gap-6">
+          <a href="https://github.com/adongwanai" target="_blank" rel="noopener" class="text-gray-400 hover:text-accent transition-colors text-sm">GitHub</a>
+          <a href="https://www.xiaohongshu.com/user/profile/5f310fd50000000001009df5" target="_blank" rel="noopener" class="text-gray-400 hover:text-accent transition-colors text-sm">小红书</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

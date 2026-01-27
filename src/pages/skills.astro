@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const skills = [
+  {
+    name: "Web Search MCP",
+    type: "MCP Server",
+    description: "赋予 Agent 实时联网搜索能力，支持 Google/Bing 聚合搜索。",
+    command: "npx @adong/mcp-search-server",
+    icon: "🌐"
+  },
+  {
+    name: "Code Reviewer",
+    type: "Claude Skill",
+    description: "基于 Google Engineering Practices 的自动化代码审查预设。",
+    command: "claude skill add code-reviewer",
+    icon: "👀"
+  },
+  {
+    name: "PostgreSQL Connector",
+    type: "MCP Server",
+    description: "安全的数据库只读连接器，支持自然语言查询 schema 和数据。",
+    command: "npx @adong/mcp-postgres",
+    icon: "🐘"
+  },
+  {
+    name: "PR Generator",
+    type: "Workflow",
+    description: "一键生成符合 Conventional Commits 规范的 PR 描述和变更日志。",
+    command: "agent run pr-gen",
+    icon: "📝"
+  },
+  {
+    name: "Tech Writer",
+    type: "Persona",
+    description: "专注于将代码逻辑转换为通俗易懂的技术文档和博客文章。",
+    command: "mode switch writer",
+    icon: "✍️"
+  },
+  {
+    name: "Image Optimizr",
+    type: "Tool",
+    description: "自动压缩和格式转换项目中的图片资源，支持 WebP/AVIF。",
+    command: "npx img-opt-cli",
+    icon: "🖼️"
+  }
+];
+---
+
+<Layout title="Agent Skills 库 - 阿东玩AI">
+  <div class="pt-32 pb-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-accent mb-6">
+        <span>✨</span>
+        <span>Capabilities Expansion</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Agent Skills Library</h1>
+      <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+        这是我的 AI Agent 能力扩展库。包含自定义的 MCP 服务器、Claude Skills 和工作流脚本。
+        <br/>让你的 AI 编程助手更加强大。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {skills.map(skill => (
+        <div class="bg-secondary border border-white/10 rounded-xl p-6 hover:border-accent/50 transition-all duration-300 group">
+          <div class="flex justify-between items-start mb-4">
+            <div class="text-3xl bg-white/5 p-3 rounded-lg group-hover:bg-accent/10 transition-colors">
+              {skill.icon}
+            </div>
+            <span class="px-2 py-1 bg-white/5 rounded text-xs font-mono text-gray-400 border border-white/5">
+              {skill.type}
+            </span>
+          </div>
+          
+          <h3 class="text-xl font-bold mb-2 group-hover:text-white text-gray-100">{skill.name}</h3>
+          <p class="text-gray-400 text-sm mb-6 leading-relaxed h-10">
+            {skill.description}
+          </p>
+
+          <div class="bg-black/30 rounded-lg p-3 flex items-center justify-between gap-2 border border-white/5 group-hover:border-accent/20 transition-colors">
+            <code class="text-xs font-mono text-accent truncate">{skill.command}</code>
+            <button class="text-gray-500 hover:text-white transition-colors" title="Copy">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 text-center">
+      <div class="inline-block p-6 bg-white/5 rounded-2xl border border-white/10">
+        <h3 class="text-lg font-bold mb-2">如何使用？</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          这些 Skills 均支持通过 MCP 协议集成到 Cursor 或 Claude Desktop 中。
+        </p>
+        <a href="https://github.com/adongwanai" target="_blank" class="text-accent hover:text-white transition-colors font-medium flex items-center justify-center gap-2">
+          查看安装文档 <span class="text-xl">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
