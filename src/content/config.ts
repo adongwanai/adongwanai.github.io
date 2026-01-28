@@ -20,7 +20,7 @@ const projects = defineCollection({
         forks: z.string().optional(),
         tags: z.array(z.string()),
         link: z.string(),
-        reflection: z.string(),
+        reflection: z.string().optional(),
         order: z.number().default(0)
     }),
 });
