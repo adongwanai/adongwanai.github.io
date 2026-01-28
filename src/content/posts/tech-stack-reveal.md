@@ -5,27 +5,35 @@ pubDate: '2026-01-25'
 tags: ['Tools', 'Cursor', 'MCP']
 ---
 
+
 ## 工欲善其事，必先利其器
 
 在 Vibe Coding 时代，选择正确的工具链至关重要。以下是我经过无数次迭代后沉淀下来的“黄金三角”配置。
 
-### 1. 核心编辑器：Cursor
+### 1. 核心编辑器：Cursor + Claude 4.5 Sonnet
 
-Cursor 不仅仅是 VS Code 的 fork，它重新定义了 AI 辅助编程的交互范式。
+Cursor 配合最新的 Claude 4.5 Sonnet，构成了目前最强大的 AI 编程 IDE。
 *   **Composer (Cmd+I)**: 能够跨文件理解上下文，一次性重构整个模块。
 *   **Tab Autocomplete**: 预测你的下一步操作，不仅仅是补全代码，更是补全思路。
+*   **Claude 4.5**: 在逻辑推理和复杂指令遵循上相比 GPT-5.2 有着显著优势，是目前公认的代码能力最强的模型。
 
-### 2. 智慧大脑：Claude 3.5 Sonnet
+### 2. 视觉与前端：Gemini 3 Pro
 
-目前公认最适合编程的大语言模型。相比 GPT-4o，Claude 在代码逻辑的连贯性和复杂指令的遵循上表现更佳。我主要在 Cursor 的 Chat 侧边栏和 Composer 中调用它。
+Google 的 Gemini 3 Pro 拥有惊人的 2M context window 和顶级的多模态能力。
+*   **UI 生成**: 直接上传设计图或草图，Gemini 3 Pro 能生成像素级还原的 Tailwind CSS 代码。
+*   **多模特理解**: 在处理复杂的 UI 交互逻辑和动画效果时表现出色。
 
-### 3. 连接器：Model Context Protocol (MCP)
+### 3. 代码审查与修复：Codex
 
-这是 Anthropic 推出的开放协议，是连接 LLM 和本地数据的桥梁。
-通过 MCP，我的 Claude 可以：
-*   直接读取本地 SQLite 数据库
-*   访问 Github 仓库的最新 Issues
-*   分析项目目录结构，生成 implementation plans
+OpenAI 的 Codex 依然是代码理解领域的基石。
+*   **智能 Debug**: 在 Workflow 中担任 "Reviewer" 的角色，自动扫描潜在 bug 并提供修复建议。
+*   **测试生成**: 擅长为生成的业务逻辑补充完善的单元测试。
+
+### 4. 连接器与扩展：MCP & Agent Skills
+
+这是打造"超级个体"的关键武器库。
+*   **Model Context Protocol (MCP)**: 连接 LLM 与本地数据库、Github Issues 等外部数据源。
+*   **Agent Skills**: 通过 Claude Code 自定义技能（Skills），将常用的工作流封装成可复用的 AI 能力，比如自动发版、文档生成等。
 
 ### 结语
 

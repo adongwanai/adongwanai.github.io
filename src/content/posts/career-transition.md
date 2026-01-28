@@ -1,25 +1,28 @@
 ---
-title: '从算法工程师到 AI Agent 开发者：我的转型之路'
-description: '在大模型时代，传统算法岗面临挑战。分享我在百度和联想的经历，以及为何决定 All in AI Agent 的心路历程。'
-pubDate: '2026-01-20'
-tags: ['Career', 'AI Agent', 'Story']
+title: "从算法工程师到 AI Agent 开发者：我的转型之路"
+description: "在大模型时代，传统算法岗面临挑战。分享我在百度和联想的经历，以及为何决定 All in AI Agent 的心路历程。"
+pubDate: "2026-01-20"
+tags: ["Career", "AI Agent", "Story"]
 ---
 
 ## 时代的洪流
 
-2023 年，ChatGPT 的横空出世像一道闪电划破了 NLP 领域的夜空。作为一名在中科院自动化所（CASIA）攻读硕士，后来在百度和联想工作的算法工程师，我感到了前所未有的震撼。
+2026 年，回望过去三年，AI 领域发生了翻天覆地的变化。从 ChatGPT 的横空出世，到 Claude 4.5 的智力涌现，作为一名曾在中科院攻读硕士，而后在百度和联想深耕算法的工程师，我亲历了这场范式转移。
 
-传统的 Bert/RNN 范式被彻底颠覆。Fine-tuning 为王的时代似乎正在过去，Prompt Engineering 和 Agentic Workflow 正在崛起。
+传统的 Bert/RNN 范式早已成为历史。Fine-tuning 甚至都不再是首选，**Agentic Workflow** 和 **In-Context Learning** 才是新的王道。
 
 ### 为什么选择转型？
 
-1.  **模型能力的商品化**：基础模型的训练门槛越来越高，但应用门槛越来越低。
-2.  **Agent 的无限可能**：能够自主规划、调用工具、解决复杂问题的 Agent，是通往 AGI 的必经之路。
+1.  **算法岗的消亡**：传统的"调参侠"已无路可走。模型的基础能力越来越强，应用层面的创新才是蓝海。
+2.  **Agent 的无限可能**：能够自主规划、使用工具 (Skills)、解决开放域问题的 Agent，正在重塑软件开发的边界。它不仅仅是 Chatbot，更是 Digital Worker。
 
 ### 我在做什么？
 
-现在，我专注于构建 **Agentic Tools**。我不仅关注模型本身，更关注模型如何与真实世界交互。
-*   **LangGraph**: 编排复杂的多智能体协作。
-*   **RAG**: 解决大模型的幻觉问题，构建企业级知识库。
+现在，我 All in **Adaptive Agents** 与 **Vibe Coding**。
+我不只关注模型本身，更关注如何构建强大的 **Agent System**：
 
-转型是痛苦的，但也是兴奋的。如果你也在犹豫是否转型，我的建议是：**Just Build**。
+*   **Memory Frameworks**: 研究 Adaptive Memory 等分层记忆机制，让 Agent 拥有长短期记忆。
+*   **Tool Use**: 通过 MCP 为 Agent 赋予操作数据库、终端和浏览器的能力。
+*   **Multi-Agent Orchestration**: 利用 LangGraph 编排多智能体协作，解决复杂的工程问题。
+
+转型是痛苦的，但也是兴奋的。如果你还在犹豫，我的建议是：**Stop Training, Start Building.**
