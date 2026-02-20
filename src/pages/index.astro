@@ -33,7 +33,7 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
 
 ---
 
-<Layout title="阿东玩AI - Vibe Coding">
+<Layout title="大模型算法工程师 & AI Agent 开发者 | 阿东玩AI - Vibe Coding 实战" description="大模型算法工程师 & AI Agent 开发者，专注 Vibe Coding、Claude Skills、MCP 服务器开发。分享 AI 工作流与实战经验，帮助开发者提升 10x 编程效率。1.5k+ GitHub Stars，20k+ 粉丝。">
   <!-- Hero Section -->
   <section class="relative pt-48 pb-32 overflow-hidden">
     <!-- Background Gradient -->
@@ -41,7 +41,7 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
     
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-400 mb-8 animate-fade-in-up">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-sm text-gray-600 dark:text-gray-400 mb-8 animate-fade-in-up">
           <span class="flex h-2 w-2 relative">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
@@ -52,53 +52,73 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
         <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-tight flex flex-col items-center">
           <div class="relative w-max max-w-full">
             <span class="block overflow-hidden border-r-4 border-blue-500 whitespace-nowrap animate-typing animate-blink bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent pb-2 font-mono">
-              Output is the Only Metric
+               Output is the Only Metric  
             </span>
           </div>
+
         </h1>
-        
-        <p class="text-lg text-gray-400 text-center mb-8 max-w-3xl mx-auto">
+
+        <p class="text-lg text-gray-600 dark:text-gray-400 text-center mb-8 max-w-3xl mx-auto">
           🎯 帮助 1,000+ 开发者掌握 Vibe Coding，提升 10x 编程效率<br/>
           <span class="text-base opacity-70 block mt-2">Empowering 1k+ developers with Vibe Coding to boost productivity 10-fold.</span>
-          <span class="text-xs text-gray-500 mt-3 block font-mono">📊 1.5k+ GitHub Stars · 20k+ Fans · 500+ Articles</span>
+          <span class="text-xs text-gray-600 dark:text-gray-400 mt-3 block font-mono">📊 1.5k+ GitHub Stars · 20k+ Fans · 500+ Articles</span>
         </p>
-        
-        
-        <div class="text-2xl md:text-3xl text-gray-300 font-bold mb-12 space-y-4">
+
+
+        <div class="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 font-bold mb-12 space-y-4">
           <p>Just Build.</p>
-          <p class="text-gray-500 text-lg font-normal max-w-2xl mx-auto leading-relaxed">
+          <p class="text-gray-600 dark:text-gray-400 text-lg font-normal max-w-2xl mx-auto leading-relaxed">
             AI handles the syntax. I focus on the product.<br/>
             AI 搞定语法，我专注产品。以思维的速度构建生产级应用。
           </p>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-6 justify-center">
-          <a href="#projects" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors text-lg">
-            View Work
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="/skills" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 text-lg shadow-lg hover:shadow-xl cursor-pointer">
+            <span>✨</span>
+            <span>探索我的 AI 工具库</span>
           </a>
 
+          <a href="https://github.com/adongwanai" target="_blank" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white dark:bg-secondary text-gray-900 dark:text-white border-2 border-gray-300 dark:border-white/10 rounded-lg font-semibold hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 text-lg cursor-pointer">
+            <span>📦</span>
+            <span>GitHub 关注我</span>
+          </a>
         </div>
 
-        <!-- Platform Matrix -->
-        <div class="mt-12 pt-8 border-t border-white/5">
-          <p class="text-sm text-gray-500 mb-6 font-mono">CONNECT WITH ME</p>
-          <div class="flex flex-wrap gap-4 justify-center">
-            {[
-              { name: "GitHub", icon: "📦", stats: "1.5k+ Stars", link: "https://github.com/adongwanai" },
-              { name: "小红书", icon: "📕", stats: "12k+ Fans", link: "https://www.xiaohongshu.com/user/profile/5f310fd50000000001009df5" },
-              { name: "Twitter", icon: "🐦", stats: "Connect", link: "#" },
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-6">
+          或者 <a href="#projects" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">查看开源项目</a> →
+        </p>
 
-              { name: "Bilibili", icon: "📺", stats: "Videos", link: "#" },
+        <!-- Social Proof Stats -->
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-white/5">
+          <div class="flex gap-8 justify-center flex-wrap">
+            <div class="text-center">
+              <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">2,000+</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">GitHub Stars</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">40,000+</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">社交媒体粉丝</div>
+            </div>
+          </div>
+        </div>
 
-            ].map((platform) => (
-              <a href={platform.link} target="_blank" class="flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:border-blue-500/30 hover:bg-blue-500/5 transition-all group min-w-[140px]">
-                <span class="text-xl group-hover:scale-110 transition-transform">{platform.icon}</span>
-                <div class="text-left">
-                  <div class="text-xs font-bold text-gray-300 group-hover:text-blue-400">{platform.name}</div>
-                  <div class="text-[10px] text-gray-500 font-mono">{platform.stats}</div>
-                </div>
-              </a>
-            ))}
+          <div class="mt-8">
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 font-mono text-center">CONNECT WITH ME</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+              {[
+                { name: "GitHub", icon: "📦", stats: "1.5k+ Stars", link: "https://github.com/adongwanai" },
+                { name: "小红书", icon: "📕", stats: "12k+ Fans", link: "https://www.xiaohongshu.com/user/profile/5f310fd50000000001009df5" },
+              ].map((platform) => (
+                <a href={platform.link} target="_blank" class="flex items-center gap-3 px-4 py-2 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg hover:border-blue-500/30 hover:bg-blue-500/5 transition-all group min-w-[140px]">
+                  <span class="text-xl group-hover:scale-110 transition-transform duration-300">{platform.icon}</span>
+                  <div class="text-left">
+                    <div class="text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-blue-400">{platform.name}</div>
+                    <div class="text-[10px] text-gray-600 dark:text-gray-400 font-mono">{platform.stats}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -106,11 +126,11 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
   </section>
 
   <!-- Workflow Section -->
-  <section class="py-24 bg-white/5 relative overflow-hidden">
+  <section class="py-24 bg-gray-100 dark:bg-white/5 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">我的 AI 工作流</h2>
-        <p class="text-gray-400">从灵感到部署，Human-in-the-loop 的最佳实践</p>
+        <p class="text-gray-600 dark:text-gray-400">从灵感到部署，Human-in-the-loop 的最佳实践</p>
       </div>
       
       <div class="flex flex-col md:flex-row justify-between items-stretch gap-4 relative">
@@ -118,17 +138,17 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
         
         {[
           { step: "01", title: "Ideation", tool: "Reasoning Models", desc: "从模糊想法到清晰规格", icon: "💡" },
-          { step: "02", title: "Frontend", tool: "Gemini 3 Pro", desc: "像素级 UI 生成与实现", icon: "�" },
+          { step: "02", title: "Frontend", tool: "Gemini 2 Pro", desc: "像素级 UI 生成与实现", icon: "🎨" },
           { step: "03", title: "Backend", tool: "Claude Code", desc: "MCP & Agent Skills 核心逻辑", icon: "⚡" },
           { step: "04", title: "Debug", tool: "Codex", desc: "智能代码审查与修复", icon: "🔧" },
           { step: "05", title: "Online", tool: "CI/CD", desc: "全流程自动化部署闭环", icon: "🚀" }
         ].map((item) => (
-          <div class="relative z-10 bg-secondary border border-white/10 p-6 rounded-xl w-full md:flex-1 hover:-translate-y-2 transition-transform duration-300 min-w-0">
+          <div class="relative z-10 bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 p-6 rounded-xl w-full md:flex-1 hover:-translate-y-2 transition-transform duration-300 min-w-0">
             <div class="text-4xl mb-4">{item.icon}</div>
             <div class="text-xs font-mono text-accent mb-2">STEP {item.step}</div>
             <h3 class="text-lg font-bold mb-1">{item.title}</h3>
-            <div class="text-xs text-blue-400 mb-3 font-mono">{item.tool}</div>
-            <p class="text-sm text-gray-500 line-clamp-2">{item.desc}</p>
+            <div class="text-xs text-blue-600 dark:text-blue-400 mb-3 font-mono">{item.tool}</div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{item.desc}</p>
           </div>
         ))}
       </div>
@@ -142,13 +162,13 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
     <div class="max-w-7xl mx-auto px-6">
       <div class="mb-16 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">精选项目</h2>
-        <p class="text-gray-400">开源贡献与个人作品</p>
+        <p class="text-gray-600 dark:text-gray-400">开源贡献与个人作品</p>
       </div>
 
        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
         {
           sortedProjects.map((project) => (
-          <div class="spotlight-card group relative bg-secondary border border-white/10 rounded-xl p-8 hover:border-white/20 transition-colors overflow-hidden flex flex-col">
+          <div class="spotlight-card group relative bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-xl p-8 hover:border-white/20 transition-all duration-300 overflow-hidden flex flex-col">
             <div class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-300 z-10"
               style="background: radial-gradient(600px circle at var(--x) var(--y), rgba(255,255,255,0.06), transparent 40%);"></div>
             
@@ -156,29 +176,34 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
               <div class="flex justify-between items-start mb-6">
                 <div class="text-4xl">{project.data.icon}</div>
                 <div class="flex gap-2">
-                  <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400 border border-white/5">⭐ {project.dynamicStars}</span>
-                  <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400 border border-white/5">🍴 {project.dynamicForks}</span>
+                  <span class="px-2 py-1 bg-gray-100 dark:bg-white/5 rounded text-xs text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/5">⭐ {project.dynamicStars}</span>
+                  <span class="px-2 py-1 bg-gray-100 dark:bg-white/5 rounded text-xs text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/5">🍴 {project.dynamicForks}</span>
                 </div>
               </div>
               
-              <h3 class="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{project.data.title}</h3>
-              <p class="text-gray-400 mb-6 leading-relaxed">{project.data.description}</p>
+              <h3 class="text-xl font-bold mb-3 group-hover:text-accent transition-colors duration-300">{project.data.title}</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">{project.data.description}</p>
               
               {project.data.reflection && (
-              <div class="mb-6 p-3 bg-blue-500/5 border border-blue-500/10 rounded-lg">
-                <p class="text-xs text-blue-300 font-medium italic">{project.data.reflection}</p>
+              <div class="mb-6 p-3 bg-blue-50 dark:bg-blue-500/5 border border-blue-200 dark:border-blue-500/10 rounded-lg">
+                <p class="text-xs text-blue-600 dark:text-blue-300 font-medium italic">{project.data.reflection}</p>
               </div>
               )}
               
               <div class="flex flex-wrap gap-2 mb-6 mt-auto">
                 {project.data.tags.map(tag => (
-                  <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300 border border-white/5">{tag}</span>
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-xs text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5">{tag}</span>
                 ))}
               </div>
-              
-              <a href={project.data.link} target="_blank" class="text-accent font-medium hover:text-accent-hover inline-flex items-center gap-1">
-                查看项目 <span>→</span>
-              </a>
+
+              <div class="mt-auto pt-4">
+                <a href={project.data.link} target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer">
+                  <span>查看项目</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         ))}
@@ -193,7 +218,7 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
     <div class="max-w-7xl mx-auto px-6">
       <div class="mb-16 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Vibe Coding 工具库</h2>
-        <p class="text-gray-400">AI 时代的编程新范式</p>
+        <p class="text-gray-600 dark:text-gray-400">AI 时代的编程新范式</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -205,10 +230,10 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
           { icon: "📚", title: "Aider", desc: "命令行 AI 编程工具，git 工作流集成，适合大型项目重构" },
           { icon: "🔧", title: "Custom Skills", desc: "Claude Code 技能系统，创建可复用的 AI 编程能力" }
         ].map((tool) => (
-          <div class="bg-tertiary border border-white/5 rounded-xl p-6 hover:border-accent/50 hover:bg-white/5 transition-all duration-300">
+          <div class="bg-gray-50 dark:bg-tertiary border border-gray-200 dark:border-white/5 rounded-xl p-6 hover:border-accent/50 hover:bg-white/5 transition-all duration-300">
             <div class="text-3xl mb-4">{tool.icon}</div>
             <h3 class="text-lg font-bold mb-2">{tool.title}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">{tool.desc}</p>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{tool.desc}</p>
           </div>
         ))}
       </div>
@@ -220,17 +245,17 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
     <div class="max-w-7xl mx-auto px-6">
       <div class="mb-16 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">最新文章</h2>
-        <p class="text-gray-400">Vibe Coding 实践心得与技术分享</p>
+        <p class="text-gray-600 dark:text-gray-400">Vibe Coding 实践心得与技术分享</p>
       </div>
       
       <div class="grid md:grid-cols-3 gap-6">
         {
           (await getCollection('posts')).slice(0, 3).map((post) => (
-            <a href={`/blog/${post.slug}`} class="group block bg-secondary border border-white/10 rounded-xl overflow-hidden hover:border-accent/50 transition-all">
-              <div class="aspect-video w-full bg-white/5 relative overflow-hidden">
+            <a href={`/blog/${post.slug}`} class="group block bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden hover:border-accent/50 transition-all">
+              <div class="aspect-video w-full bg-gray-100 dark:bg-white/5 relative overflow-hidden">
                 <div class="absolute inset-0 bg-blue-500/10 group-hover:bg-blue-500/0 transition-colors"></div>
                  {post.data.heroImage && (
-                  <img src={post.data.heroImage} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+                  <img src={post.data.heroImage} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
                  )}
                  {!post.data.heroImage && (
                   <div class="w-full h-full flex items-center justify-center text-4xl">📝</div>
@@ -242,9 +267,9 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
                     <span class="text-xs font-mono text-accent bg-accent/10 px-2 py-1 rounded">{tag}</span>
                   ))}
                 </div>
-                <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors line-clamp-2">{post.data.title}</h3>
-                <p class="text-gray-400 text-sm line-clamp-3 mb-4">{post.data.description}</p>
-                <div class="text-xs text-gray-500">
+                <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">{post.data.title}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">{post.data.description}</p>
+                <div class="text-xs text-gray-600 dark:text-gray-400">
                   {post.data.pubDate.toLocaleDateString('zh-CN')}
                 </div>
               </div>
@@ -256,7 +281,7 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-24 bg-white/5">
+  <section id="about" class="py-24 bg-gray-100 dark:bg-white/5">
     <div class="max-w-5xl mx-auto px-6">
       <h2 class="text-3xl font-bold mb-16">关于我</h2>
       
@@ -265,22 +290,22 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
         <div class="grid md:grid-cols-4 gap-8">
           <div class="text-accent font-mono text-sm tracking-widest uppercase pt-1">01. 经历</div>
           <div class="md:col-span-3 space-y-12">
-            <div class="relative pl-6 border-l border-white/10">
+            <div class="relative pl-6 border-l border-gray-200 dark:border-white/10">
               <div class="mb-10 relative">
-                 <span class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-blue-500 ring-4 ring-primary"></span>
-                 <h3 class="text-xl font-bold text-gray-100">大模型算法工程师</h3>
-                 <div class="text-gray-400 mb-2">Lenovo · 联想XXX院</div>
+                 <span class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-blue-500 ring-4 ring-white dark:ring-primary"></span>
+                 <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">大模型算法工程师</h3>
+                 <div class="text-gray-600 dark:text-gray-400 mb-2">Lenovo · 联想XXX院</div>
 
               </div>
               <div class="mb-10 relative">
-                 <span class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-gray-700 ring-4 ring-primary"></span>
-                 <h3 class="text-xl font-bold text-gray-100">AI 开发者</h3>
-                 <div class="text-gray-400 mb-2">Baidu · 百度</div>
+                 <span class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-gray-700 ring-4 ring-white dark:ring-primary"></span>
+                 <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">AI 开发者</h3>
+                 <div class="text-gray-600 dark:text-gray-400 mb-2">Baidu · 百度</div>
               </div>
               <div class="relative">
-                 <span class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-gray-700 ring-4 ring-primary"></span>
-                 <h3 class="text-xl font-bold text-gray-100">硕士学位</h3>
-                 <div class="text-gray-400 mb-2">CASIA · 中科院自动化所</div>
+                 <span class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-gray-700 ring-4 ring-white dark:ring-primary"></span>
+                 <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">硕士学位</h3>
+                 <div class="text-gray-600 dark:text-gray-400 mb-2">CASIA · 中科院自动化所</div>
               </div>
             </div>
           </div>
@@ -290,11 +315,11 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
         <div class="grid md:grid-cols-4 gap-8">
            <div class="text-accent font-mono text-sm tracking-widest uppercase pt-1">02. 理念</div>
            <div class="md:col-span-3">
-             <p class="text-xl text-gray-200 leading-relaxed mb-6 font-light">
+             <p class="text-xl text-gray-800 dark:text-gray-200 leading-relaxed mb-6 font-light">
                "AI handles the syntax. I focus on the product."
              </p>
-             <p class="text-gray-400 leading-relaxed text-base">
-               我相信 <strong class="text-white">Vibe Coding</strong> 是一种新的心流状态。
+             <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
+               我相信 <strong class="text-gray-900 dark:text-white">Vibe Coding</strong> 是一种新的心流状态。
                不需要记住所有 API，不需要去 Stack Overflow 复制粘贴。
                我们用自然语言编排逻辑，用 Cursor 生成骨架，用 Claude 注入灵魂。
                这不仅仅是效率的提升，更是创造力的解放。
@@ -306,44 +331,44 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
         <div class="grid md:grid-cols-4 gap-8">
            <div class="text-accent font-mono text-sm tracking-widest uppercase pt-1">03. 技术栈</div>
            <div class="md:col-span-3">
-             <div class="flex flex-wrap gap-x-8 gap-y-4 font-mono text-sm text-gray-400">
+             <div class="flex flex-wrap gap-x-8 gap-y-4 font-mono text-sm text-gray-600 dark:text-gray-400">
                <div class="space-y-2">
-                 <div class="text-white text-xs opacity-50 mb-1">CORE</div>
+                 <div class="text-gray-900 dark:text-white text-xs opacity-50 mb-1">CORE</div>
                  <div>Python / TypeScript</div>
                </div>
                <div class="space-y-2">
-                 <div class="text-white text-xs opacity-50 mb-1">AI ENGINEERING</div>
+                 <div class="text-gray-900 dark:text-white text-xs opacity-50 mb-1">AI ENGINEERING</div>
                  <div>LangChain / LangGraph / RAG</div>
                </div>
                <div class="space-y-2">
-                 <div class="text-white text-xs opacity-50 mb-1">FRAMEWORKS</div>
+                 <div class="text-gray-900 dark:text-white text-xs opacity-50 mb-1">FRAMEWORKS</div>
                  <div>React / Next.js / Astro</div>
                </div>
                <div class="space-y-2">
-                 <div class="text-white text-xs opacity-50 mb-1">TOOLS</div>
+                 <div class="text-gray-900 dark:text-white text-xs opacity-50 mb-1">TOOLS</div>
                  <div>Cursor / Claude / Docker</div>
                </div>
              </div>
            </div>
         </div>
       </div>
-      <div class="mt-20 pt-8 border-t border-white/5">
+      <div class="mt-20 pt-8 border-t border-gray-200 dark:border-white/5">
         <div class="flex flex-col md:flex-row gap-8 justify-center md:justify-start">
           <div class="flex items-center gap-3">
             <span class="text-2xl">📧</span>
             <div>
-              <div class="text-xs text-gray-500">Email</div>
-              <a href="mailto:contact@adong.ai" class="text-gray-300 hover:text-white transition-colors">contact@adong.ai</a>
+              <div class="text-xs text-gray-600 dark:text-gray-400">Email</div>
+              <a href="mailto:contact@adong.ai" class="text-gray-700 dark:text-gray-300 hover:text-white transition-colors duration-300 cursor-pointer">contact@adong.ai</a>
             </div>
           </div>
           <div class="flex items-center gap-3 group relative cursor-pointer">
             <span class="text-2xl">🟢</span>
             <div>
-              <div class="text-xs text-gray-500">WeChat</div>
-              <div class="text-gray-300">abc061200x</div>
+              <div class="text-xs text-gray-600 dark:text-gray-400">WeChat</div>
+              <div class="text-gray-700 dark:text-gray-300">abc061200x</div>
             </div>
             <!-- QR Popup -->
-            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto bg-white p-2 rounded-lg shadow-xl">
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto bg-white p-2 rounded-lg shadow-xl">
                <div class="w-32 h-32 bg-gray-200 flex items-center justify-center text-black text-xs">QR Code</div>
             </div>
           </div>
@@ -353,62 +378,71 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
   </section>
 
   <!-- Service/Cooperation Section -->
-  <section id="cooperation" class="py-24 border-t border-white/5">
+  <section id="cooperation" class="py-24 border-t border-gray-200 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6">
       <div class="mb-16 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Cooperation</h2>
-        <p class="text-gray-400">加速你的 AI 转型之旅</p>
+        <p class="text-gray-600 dark:text-gray-400">加速你的 AI 转型之旅</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         <!-- Course Card -->
-        <div class="bg-gradient-to-br from-secondary to-tertiary border border-white/10 rounded-2xl p-6 hover:border-accent/40 transition-colors relative overflow-hidden group">
-          <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg">即将上线</div>
+        <div class="bg-gradient-to-br from-secondary to-tertiary border border-gray-200 dark:border-white/10 rounded-2xl p-6 hover:border-accent/40 transition-all duration-300 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 bg-accent text-gray-900 dark:text-white text-xs font-bold px-3 py-1 rounded-bl-lg">即将上线</div>
           <div class="text-4xl mb-6">🚀</div>
           <h3 class="text-xl font-bold mb-2">Vibe Coding 实战课</h3>
-          <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed text-sm">
             从 Zero 到 AI Native。掌握 Cursor、Claude Code、MCP 的深度用法，构建你的超级个体工作流。
           </p>
-          <ul class="space-y-3 mb-8 text-gray-300 text-xs">
+          <ul class="space-y-3 mb-8 text-gray-700 dark:text-gray-300 text-xs">
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 独家 Prompt Engineering 技巧</li>
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 复杂 Agent 系统设计模式</li>
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 真实商业项目实操复盘</li>
           </ul>
-          <a href="#" class="block w-full text-center py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors text-sm">
+          <a href="#" class="block w-full text-center py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all duration-300 text-sm cursor-pointer">
             加入等待名单 (Waitlist)
           </a>
         </div>
 
         <!-- Community Card -->
-        <div class="bg-secondary border border-white/10 rounded-2xl p-6 hover:border-accent/40 transition-colors">
+        <div class="bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl p-6 hover:border-accent/40 transition-all duration-300">
           <div class="text-4xl mb-6">🔥</div>
           <h3 class="text-xl font-bold mb-2">转行 Agent 大模型社区</h3>
-          <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed text-sm">
             加入高密度的 AI 从业者圈子。分享转型经验，获取一手行业情报与内推机会。
           </p>
-          <ul class="space-y-3 mb-8 text-gray-300 text-xs">
+          <ul class="space-y-3 mb-8 text-gray-700 dark:text-gray-300 text-xs">
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 每日干货分享</li>
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 转型避坑指南</li>
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 大厂内推渠道</li>
           </ul>
-          <a href="https://www.xiaohongshu.com/user/profile/5f310fd50000000001009df5" target="_blank" class="block w-full text-center py-3 bg-red-500/10 text-red-400 font-bold rounded-lg hover:bg-red-500/20 transition-colors border border-red-500/20 text-sm">
+          <a href="https://www.xiaohongshu.com/user/profile/5f310fd50000000001009df5" target="_blank" class="block w-full text-center py-3 bg-red-500/10 text-red-400 font-bold rounded-lg hover:bg-red-500/20 transition-all duration-300 border border-red-500/20 text-sm cursor-pointer">
             立即加入 (小红书)
           </a>
         </div>
 
         <!-- Consulting Card -->
-        <div class="bg-secondary border border-white/10 rounded-2xl p-6 hover:border-accent/40 transition-colors">
-          <div class="text-4xl mb-6">🤝</div>
-          <h3 class="text-xl font-bold mb-2">1:1 咨询与顾问</h3>
-          <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+        <div class="bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl p-6 hover:border-accent/40 transition-all duration-300">
+          <div class="flex items-center justify-between mb-6">
+            <div class="text-4xl">🤝</div>
+            <div class="flex items-center gap-2 bg-red-50 dark:bg-red-500/10 px-3 py-1 rounded-full border border-red-200 dark:border-red-500/20">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
+              <span class="text-xs text-red-600 dark:text-red-400 font-bold">本月仅剩 1 个名额</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2">1:1 技术交流与顾问</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed text-sm">
             为企业或个人提供定制化的 AI 落地建议。解决 RAG 幻觉、Agent 稳定性等核心技术难题。
           </p>
-          <ul class="space-y-3 mb-8 text-gray-300 text-xs">
+          <ul class="space-y-3 mb-8 text-gray-700 dark:text-gray-300 text-xs">
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 架构设计与技术选型</li>
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 团队 AI 效能提升内训</li>
             <li class="flex items-center gap-2"><span class="text-accent">✓</span> 复杂业务场景 POC 验证</li>
           </ul>
-          <a href="mailto:contact@adong.ai" class="block w-full text-center py-3 bg-white/10 text-white font-bold rounded-lg hover:bg-white/20 transition-colors border border-white/10 text-sm">
+          <a href="mailto:contact@adong.ai" class="block w-full text-center py-3 bg-white/10 text-gray-900 dark:text-white font-bold rounded-lg hover:bg-white/20 transition-all duration-300 border border-gray-200 dark:border-white/10 text-sm cursor-pointer">
             预约咨询
           </a>
         </div>
