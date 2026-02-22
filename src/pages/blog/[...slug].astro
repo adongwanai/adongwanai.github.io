@@ -64,7 +64,12 @@ const { Content } = await post.render();
 			</p>
 		</div>
 
-		<div class="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:text-white prose-a:text-blue-400 prose-code:text-blue-300 prose-pre:bg-secondary prose-pre:border prose-pre:border-white/10">
+		<div class="prose prose-invert prose-lg max-w-none 
+			prose-headings:font-bold prose-headings:text-white 
+			prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline 
+			prose-code:text-blue-300 prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
+			prose-img:rounded-xl prose-img:border prose-img:border-white/10
+			prose-pre:bg-[#1e1e1e] prose-pre:border prose-pre:border-white/10">
 			<Content />
 		</div>
 	</article>

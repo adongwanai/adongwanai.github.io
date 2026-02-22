@@ -35,117 +35,110 @@ const currentFolder = note.slug.split('/').length > 1 ? note.slug.split('/').sli
 ---
 
 <Layout title={`${note.data.title} - 阿东的 VibeCoding 赚钱笔记`}>
-  <div class="pt-[90px] pb-24 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto flex flex-col md:flex-row gap-8">
-    
-    <!-- Left Sidebar (Menu) -->
-    <aside class="hidden md:block w-64 lg:w-72 shrink-0">
-      <div class="sticky top-[90px] h-[calc(100vh-[90px])] overflow-y-auto pr-4 pb-12 custom-scrollbar border-r border-gray-200 dark:border-white/10">
-        <div class="mb-6">
-           <a href="/vibecoding" class="text-sm font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-white flex items-center gap-2 transition-colors">
-             ← 赚钱笔记首页
-           </a>
-        </div>
-        
-        <div class="flex flex-col gap-6">
-          {Object.entries(groupedNotes).map(([folder, folderNotes]) => (
-            <div class="flex flex-col gap-2">
-               {folder !== 'Overview' && (
-                 <h3 class="font-bold text-gray-900 dark:text-gray-100 text-sm mb-1">{folder}</h3>
-               )}
-               <nav class="flex flex-col gap-[2px] border-l border-gray-200 dark:border-white/10 ml-2 pl-3">
-                {folderNotes.map((item) => (
-                  <a 
-                    href={`/vibecoding/${item.slug}`} 
-                    class={`block py-1.5 px-3 rounded-md text-sm transition-all duration-200 ${
-                      item.slug === note.slug 
-                        ? 'bg-blue-50 text-blue-600 font-medium dark:bg-blue-500/10 dark:text-blue-400' 
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
-                    }`}
-                  >
-                    {item.data.title}
-                  </a>
-                ))}
-               </nav>
-            </div>
-          ))}
-        </div>
-      </div>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main class="flex-1 min-w-0 max-w-3xl lg:px-8 mt-4 md:mt-0">
-      <!-- Breadcrumbs -->
-      <nav class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-8 font-medium space-x-2">
-        <a href="/vibecoding" class="hover:text-gray-900 dark:hover:text-white transition-colors">赚钱笔记</a>
-        <span>/</span>
-        {currentFolder !== 'Overview' && (
-          <>
-            <span class="text-gray-600 dark:text-gray-300">{currentFolder}</span>
-            <span>/</span>
-          </>
-        )}
-        <span class="text-gray-900 dark:text-white truncate">{note.data.title}</span>
-      </nav>
-
-      <article class="prose prose-gray dark:prose-invert prose-lg max-w-none 
-        prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
-        prose-h2:text-2xl prose-h3:text-xl
-        prose-a:text-accent prose-a:no-underline hover:prose-a:underline 
-        prose-img:rounded-xl prose-img:border prose-img:border-gray-200 dark:prose-img:border-white/10 
-        prose-hr:border-gray-200 dark:prose-hr:border-white/10
-        prose-code:text-accent prose-code:bg-blue-50 dark:prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
-        prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-white/10 prose-pre:bg-[#1e1e1e]">
-        
-        <header class="mb-10 not-prose">
-          <h1 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-gray-900 dark:text-white tracking-tight">{note.data.title}</h1>
-          <p class="text-gray-500 dark:text-gray-400 text-lg">{note.data.description}</p>
-        </header>
-
-        <Content />
-      </article>
+  <div class="bg-gray-50 dark:bg-[#13151a] min-h-screen pt-[70px]">
+    <div class="px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto flex flex-col md:flex-row gap-6 lg:gap-8 pt-6 pb-24">
       
-      <!-- Prev/Next Navigation -->
-      <div class="mt-16 pt-8 border-t border-gray-200 dark:border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
-        {prevNote ? (
-          <a href={`/vibecoding/${prevNote.slug}`} class="flex flex-col gap-1 p-4 rounded-xl border border-gray-200 dark:border-white/10 hover:border-accent dark:hover:border-accent hover:shadow-md transition-all group">
-            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase">上一页</span>
-            <span class="text-accent font-medium group-hover:underline line-clamp-2">{prevNote.data.title}</span>
-          </a>
-        ) : <div></div>}
-        
-        {nextNote ? (
-          <a href={`/vibecoding/${nextNote.slug}`} class="flex flex-col items-end text-right gap-1 p-4 rounded-xl border border-gray-200 dark:border-white/10 hover:border-accent dark:hover:border-accent hover:shadow-md transition-all group">
-            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase">下一页</span>
-            <span class="text-accent font-medium group-hover:underline line-clamp-2">{nextNote.data.title}</span>
-          </a>
-        ) : <div></div>}
-      </div>
-    </main>
-
-    <!-- Right Sidebar (Table of Contents) -->
-    {headings && headings.length > 0 && (
-      <aside class="hidden xl:block w-64 shrink-0 relative">
-        <div class="sticky top-[90px] h-[calc(100vh-[90px])] overflow-y-auto pl-4 pb-12 custom-scrollbar">
-          <h4 class="font-semibold text-gray-900 dark:text-white tracking-wider text-sm mb-4">本页内容</h4>
-          <nav class="flex flex-col gap-1.5 relative border-l border-gray-200 dark:border-white/10" id="toc-nav">
-            {headings.map((heading) => (
-              heading.depth > 1 && heading.depth < 4 && (
-                <a 
-                  href={`#${heading.slug}`} 
-                  class={`block text-sm py-1 transition-colors hover:text-accent toc-link
-                    ${heading.depth === 2 ? 'pl-4 text-gray-700 dark:text-gray-300 font-medium' : 'pl-8 text-gray-500 dark:text-gray-400'}
-                  `}
-                  data-slug={heading.slug}
-                >
-                  {heading.text}
-                </a>
-              )
+      <!-- Left Sidebar (Menu) -->
+      <aside class="hidden md:block w-64 lg:w-72 shrink-0">
+        <div class="sticky top-[94px] h-[calc(100vh-[94px])] overflow-y-auto pr-2 pb-12 custom-scrollbar border-r border-gray-200 dark:border-white/10">
+          
+          <div class="flex flex-col gap-4">
+            {Object.entries(groupedNotes).map(([folder, folderNotes]) => (
+              <details class="group" open>
+                 <summary class="flex items-center justify-between cursor-pointer py-2 px-3 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg text-sm font-bold text-gray-900 dark:text-gray-100 select-none transition-colors">
+                   <span>{folder === 'Overview' ? '关于本系列' : folder}</span>
+                   <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                   </svg>
+                 </summary>
+                 <nav class="mt-1 flex flex-col gap-1 pl-3 ml-2 border-l border-gray-200 dark:border-white/10">
+                  {folderNotes.map((item) => (
+                    <a 
+                      href={`/vibecoding/${item.slug}`} 
+                      class={`block py-1.5 px-3 rounded-lg text-sm transition-all duration-200 ${
+                        item.slug === note.slug 
+                          ? 'bg-emerald-50 text-emerald-700 font-medium dark:bg-emerald-500/10 dark:text-emerald-400' 
+                          : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
+                      }`}
+                    >
+                      {item.data.title}
+                    </a>
+                  ))}
+                 </nav>
+              </details>
             ))}
-          </nav>
+          </div>
         </div>
       </aside>
-    )}
 
+      <!-- Main Content Area -->
+      <main class="flex-1 min-w-0 max-w-4xl lg:px-4">
+        
+        <!-- Document Title Card -->
+        <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm mb-6">
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">{note.data.title}</h1>
+        </div>
+
+        <!-- Document Content Card -->
+        <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm">
+          <article class="prose prose-gray dark:prose-invert prose-lg max-w-none 
+            prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
+            prose-h2:text-2xl prose-h2:mt-12 prose-h2:border-b prose-h2:border-gray-200 dark:prose-h2:border-white/10 prose-h2:pb-2
+            prose-h3:text-xl
+            prose-a:text-accent prose-a:no-underline hover:prose-a:underline 
+            prose-img:rounded-xl prose-img:border prose-img:border-gray-200 dark:prose-img:border-white/10 prose-img:shadow-sm
+            prose-hr:border-gray-200 dark:prose-hr:border-white/10
+            prose-code:text-accent prose-code:bg-blue-50 dark:prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
+            prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-white/10 prose-pre:bg-[#1e1e1e] prose-pre:shadow-sm">
+            <Content />
+          </article>
+        </div>
+        
+        <!-- Prev/Next Navigation -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
+          {prevNote ? (
+            <a href={`/vibecoding/${prevNote.slug}`} class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-[#17181c] border border-gray-200 dark:border-white/5 shadow-sm hover:border-accent dark:hover:border-accent hover:shadow-md transition-all group">
+              <span class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase">上一页</span>
+              <span class="text-accent font-medium group-hover:underline line-clamp-2">{prevNote.data.title}</span>
+            </a>
+          ) : <div></div>}
+          
+          {nextNote ? (
+            <a href={`/vibecoding/${nextNote.slug}`} class="flex flex-col items-end text-right gap-1 p-5 rounded-xl bg-white dark:bg-[#17181c] border border-gray-200 dark:border-white/5 shadow-sm hover:border-accent dark:hover:border-accent hover:shadow-md transition-all group">
+              <span class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase">下一页</span>
+              <span class="text-accent font-medium group-hover:underline line-clamp-2">{nextNote.data.title}</span>
+            </a>
+          ) : <div></div>}
+        </div>
+      </main>
+
+      <!-- Right Sidebar (Table of Contents) -->
+      {headings && headings.length > 0 && (
+        <aside class="hidden xl:block w-64 shrink-0">
+          <div class="sticky top-[94px]">
+            <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-5 shadow-sm">
+              <h4 class="font-bold text-gray-900 dark:text-white text-base mb-4 tracking-wide">On this page</h4>
+              <nav class="flex flex-col gap-2 relative" id="toc-nav">
+                {headings.map((heading) => (
+                  heading.depth > 1 && heading.depth < 4 && (
+                    <a 
+                      href={`#${heading.slug}`} 
+                      class={`block text-sm transition-colors hover:text-accent toc-link
+                        ${heading.depth === 2 ? 'text-gray-600 dark:text-gray-300' : 'pl-4 text-gray-500 dark:text-gray-400'}
+                      `}
+                      data-slug={heading.slug}
+                    >
+                      {heading.text}
+                    </a>
+                  )
+                ))}
+              </nav>
+            </div>
+          </div>
+        </aside>
+      )}
+
+    </div>
   </div>
 </Layout>
 

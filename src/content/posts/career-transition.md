@@ -22,7 +22,7 @@ tags: ["Career", "AI Agent", "Story"]
 我不只关注模型本身，更关注如何构建强大的 **Agent System**：
 
 *   **Memory Frameworks**: 研究 Adaptive Memory 等分层记忆机制，让 Agent 拥有长短期记忆。
-*   **Tool Use**: 通过 MCP 为 Agent 赋予操作数据库、终端和浏览器的能力。
-*   **Multi-Agent Orchestration**: 利用 LangGraph 编排多智能体协作，解决复杂的工程问题。
+*   **Tool Use**: 利用RL通过 Tool Calling，MCP 为 Agent 赋予操作数据库、终端和浏览器的能力。
+*   **Multi-Agent Orchestration**: 利用 LangGraph、CrewAI 编排多智能体协作，解决复杂的工程问题。
 
 转型是痛苦的，但也是兴奋的。如果你还在犹豫，我的建议是：**Stop Training, Start Building.**

@@ -25,4 +25,13 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { posts, projects };
+const vibecoding = defineCollection({
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        pubDate: z.coerce.date(),
+        order: z.number().default(0),
+    }),
+});
+
+export const collections = { posts, projects, vibecoding };
