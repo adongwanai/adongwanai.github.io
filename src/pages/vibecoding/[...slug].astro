@@ -2,6 +2,12 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
+const folderDisplayNames: Record<string, string> = {
+  'foundation': '📚 基础体系课 (Free)',
+  'projects': '🚀 进阶实战项目 (Premium)',
+  'Overview': '📌 关于本系列'
+};
+const getFolderDisplayName = (f: string) => folderDisplayNames[f] || f;
 export async function getStaticPaths() {
   const notes = await getCollection('vibecoding');
   return notes.map(note => ({
@@ -25,13 +31,11 @@ const nextNote = currentIndex < allNotes.length - 1 ? allNotes[currentIndex + 1]
 const groupedNotes = allNotes.reduce((acc, currentNote) => {
   const parts = currentNote.slug.split('/');
   const folder = parts.length > 1 ? parts.slice(0, -1).join('/') : 'Overview';
-  
+
   if (!acc[folder]) acc[folder] = [];
   acc[folder].push(currentNote);
   return acc;
 }, {} as Record<string, typeof allNotes>);
-
-const currentFolder = note.slug.split('/').length > 1 ? note.slug.split('/').slice(0, -1).join('/') : 'Overview';
 ---
 
 <Layout title={`${note.data.title} - 阿东的 VibeCoding 赚钱笔记`}>
@@ -45,8 +49,8 @@ const currentFolder = note.slug.split('/').length > 1 ? note.slug.split('/').sli
           <div class="flex flex-col gap-4">
             {Object.entries(groupedNotes).map(([folder, folderNotes]) => (
               <details class="group" open>
-                 <summary class="flex items-center justify-between cursor-pointer py-2 px-3 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg text-sm font-bold text-gray-900 dark:text-gray-100 select-none transition-colors">
-                   <span>{folder === 'Overview' ? '关于本系列' : folder}</span>
+               <summary class="flex items-center justify-between cursor-pointer py-2 px-3 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg text-sm font-bold text-gray-900 dark:text-gray-100 select-none transition-colors">
+                   <span>{getFolderDisplayName(folder)}</span>
                    <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                    </svg>
@@ -74,14 +78,42 @@ const currentFolder = note.slug.split('/').length > 1 ? note.slug.split('/').sli
       <!-- Main Content Area -->
       <main class="flex-1 min-w-0 max-w-4xl lg:px-4">
         
+        <!-- Breadcrumb -->
+        <nav class="mb-6 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/vibecoding" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+            ← 返回 Vibe Coding 赚钱笔记
+          </a>
+        </nav>
+
+        <!-- Mobile TOC -->
+        {headings && headings.length > 0 && (
+          <details class="xl:hidden bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 mb-6 shadow-sm group">
+            <summary class="p-4 cursor-pointer font-bold text-gray-900 dark:text-white flex items-center justify-between select-none">
+              <span>📑 目录导航</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="p-4 pt-0 flex flex-col gap-3 border-t border-gray-100 dark:border-white/5 mt-2 pt-4">
+              {headings.map((heading) => (
+                heading.depth > 1 && heading.depth < 4 && (
+                  <a href={`#${heading.slug}`} class={`block text-sm transition-colors hover:text-accent ${heading.depth === 2 ? 'text-gray-700 dark:text-gray-300 font-medium' : 'pl-4 text-gray-500 dark:text-gray-400'}`}>
+                    {heading.text}
+                  </a>
+                )
+              ))}
+            </nav>
+          </details>
+        )}
+
         <!-- Document Title Card -->
         <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm mb-6">
           <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">{note.data.title}</h1>
         </div>
 
         <!-- Document Content Card -->
-        <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm">
-          <article class="prose prose-gray dark:prose-invert prose-lg max-w-none 
+        <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm relative">
+          <article class={`prose prose-gray dark:prose-invert prose-lg max-w-none 
             prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
             prose-h2:text-2xl prose-h2:mt-12 prose-h2:border-b prose-h2:border-gray-200 dark:prose-h2:border-white/10 prose-h2:pb-2
             prose-h3:text-xl
@@ -89,9 +121,29 @@ const currentFolder = note.slug.split('/').length > 1 ? note.slug.split('/').sli
             prose-img:rounded-xl prose-img:border prose-img:border-gray-200 dark:prose-img:border-white/10 prose-img:shadow-sm
             prose-hr:border-gray-200 dark:prose-hr:border-white/10
             prose-code:text-accent prose-code:bg-blue-50 dark:prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
-            prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-white/10 prose-pre:bg-[#1e1e1e] prose-pre:shadow-sm">
+            prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-white/10 prose-pre:bg-[#1e1e1e] prose-pre:shadow-sm
+            ${note.data.tier === 'premium' ? 'max-h-[800px] overflow-hidden select-none' : ''}`}>
             <Content />
           </article>
+
+          {note.data.tier === 'premium' && (
+            <div class="absolute bottom-0 left-0 right-0 pt-48 pb-12 bg-gradient-to-t from-white via-white/95 to-white/0 dark:from-[#17181c] dark:via-[#17181c]/95 dark:to-[#17181c]/0 flex flex-col items-center justify-end z-10 pointer-events-auto backdrop-blur-[2px]">
+              <div class="bg-white dark:bg-[#1f2128] p-8 rounded-2xl border border-violet-200 dark:border-violet-500/20 shadow-2xl max-w-md w-full text-center mx-4 transform translate-y-4">
+                <p class="mb-4 text-gray-500 dark:text-gray-400 font-medium tracking-wide">📖 已阅读 <span class="font-bold text-violet-600 dark:text-violet-400">30%</span></p>
+                <div class="w-16 h-16 bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm">
+                  🔒
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">加入知识星球解锁全文</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">
+                  本文为进阶实战项目，加入知识星球以获取完整教程内容、代码仓库及视频讲解。
+                </p>
+                <a href="https://xyzq.xyz" target="_blank" class="block w-full py-3 px-4 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-lg transition-transform hover:-translate-y-0.5 shadow-lg shadow-violet-500/30">
+                  立即解锁 (¥50/年)
+                </a>
+                <p class="text-xs text-gray-400 dark:text-gray-500 mt-4 tracking-wide">包含 8 大核心实战项目与 1v1 答疑</p>
+              </div>
+            </div>
+          )}
         </div>
         
         <!-- Prev/Next Navigation -->

@@ -2,6 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
+const folderDisplayNames: Record<string, string> = {
+  'foundation': '📚 基础体系课 (Free)',
+  'projects': '🚀 进阶实战项目 (Premium)',
+  'Overview': '📌 关于本系列'
+};
+const getFolderDisplayName = (f: string) => folderDisplayNames[f] || f;
 const allNotes = (await getCollection('vibecoding')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -34,7 +40,7 @@ const groupedNotes = allNotes.reduce((acc, currentNote) => {
           {Object.entries(groupedNotes).map(([folder, folderNotes]) => (
             <div class="flex flex-col gap-2">
                {folder !== 'Overview' && (
-                 <h3 class="font-bold text-gray-900 dark:text-gray-100 text-sm mb-1">{folder}</h3>
+                 <h3 class="font-bold text-gray-900 dark:text-gray-100 text-sm mb-1">{getFolderDisplayName(folder)}</h3>
                )}
                <nav class="flex flex-col gap-[2px] border-l border-gray-200 dark:border-white/10 ml-2 pl-3">
                 {folderNotes.map((item) => (
@@ -57,29 +63,146 @@ const groupedNotes = allNotes.reduce((acc, currentNote) => {
       <div class="mb-12">
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-xs text-accent mb-6 font-semibold uppercase tracking-wider">
           <span>📚</span>
-          <span>Documentation Series</span>
+          <span>Vibe Coding 赚钱笔记</span>
         </div>
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900 dark:text-white tracking-tight">阿东的 VibeCoding 赚钱笔记</h1>
-        <p class="text-gray-500 dark:text-gray-400 text-lg max-w-2xl leading-relaxed">
-          这是一个持续更新的实战文档库。在这里我会毫无保留地分享 <span class="text-gray-800 dark:text-gray-200 font-medium">Vibe Coding 最佳实践、Agent 开发技巧以及大模型变现思路</span>。请通过左侧导航栏或下方卡片开启阅读。
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900 dark:text-white tracking-tight">Vibe Coding 专栏库</h1>
+        <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl leading-relaxed">
+          全网稀缺的 <span class="text-gray-900 dark:text-gray-100 font-bold">AI Native 编程实战宝典</span>。带你深度掌握 Cursor、Claude Code 与 Skills 核心工作流，完成从初级编码到无所不能<span class="text-accent">超级个体</span>的思维大跃迁。
         </p>
       </div>
 
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        {allNotes.map((note) => (
+      <!-- Learning Paths -->
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <!-- Foundation Path -->
+        <a href="/vibecoding/foundation" class="group block">
+          <div class="bg-gradient-to-br from-blue-50 to-violet-50 dark:from-blue-900/20 dark:to-violet-900/20 border-2 border-blue-200 dark:border-blue-500/20 rounded-xl p-8 hover:border-blue-400 dark:hover:border-blue-400 transition-all h-full relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-violet-500/0 group-hover:from-blue-500/5 group-hover:to-violet-500/5 transition-opacity"></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-semibold">
+                  ✓ 100% 免费
+                </span>
+              </div>
+              <div class="text-5xl mb-4">📖</div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100">基础课程</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                掌握工具配置、核心工作流和最佳实践
+              </p>
+              <ul class="space-y-2 mb-6 text-sm text-gray-600 dark:text-gray-400">
+                <li class="flex items-center gap-2">
+                  <span class="text-green-500">✓</span>
+                  <span>Cursor & Claude Code 配置</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-green-500">✓</span>
+                  <span>MCP 协议基础</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-green-500">✓</span>
+                  <span>Prompt Engineering</span>
+                </li>
+              </ul>
+              <div class="flex items-center text-blue-600 dark:text-blue-400 font-semibold group-hover:text-blue-700 transition-colors">
+                <span>开始免费学习</span>
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Projects Path -->
+        <a href="/vibecoding/projects" class="group block">
+          <div class="bg-gradient-to-br from-violet-50 to-blue-50 dark:from-violet-900/20 dark:to-blue-900/20 border-2 border-violet-200 dark:border-violet-500/20 rounded-xl p-8 hover:border-violet-400 dark:hover:border-violet-400 transition-all h-full relative overflow-hidden">
+            <div class="absolute top-6 right-6 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider">
+              Premium
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-br from-violet-500/0 to-blue-500/0 group-hover:from-violet-500/5 group-hover:to-blue-500/5 transition-opacity"></div>
+            <div class="relative z-10">
+              <div class="text-5xl mb-4">🚀</div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100">项目实战</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                通过真实项目学习，构建生产级 AI 应用
+              </p>
+              <ul class="space-y-2 mb-6 text-sm text-gray-600 dark:text-gray-400">
+                <li class="flex items-center gap-2">
+                  <span>🎯</span>
+                  <span>9 大实战项目矩阵</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span>💻</span>
+                  <span>完整源代码 + 视频教程</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span>💬</span>
+                  <span>社区答疑支持</span>
+                </li>
+              </ul>
+              <div class="flex items-center text-violet-600 dark:text-violet-400 font-semibold group-hover:text-violet-700 transition-colors">
+                <span>查看项目教程</span>
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-4 mt-16 mb-8">
+        <div class="flex-1 h-px bg-gray-200 dark:bg-white/10"></div>
+        <span class="text-sm text-gray-500 dark:text-gray-400 font-medium px-4">第一阶段：心流觉醒 (开源免费)</span>
+        <div class="flex-1 h-px bg-gray-200 dark:bg-white/10"></div>
+      </div>
+
+      <!-- Foundation Resources -->
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-16">
+        {allNotes.filter(note => note.slug.startsWith('foundation/')).map((note) => (
           <a href={`/vibecoding/${note.slug}`} class="group block">
-            <div class="bg-white dark:bg-[#1a1c23] border border-gray-200 dark:border-white/10 rounded-xl p-6 h-full hover:border-accent/50 dark:hover:border-accent/40 hover:shadow-[0_4px_20px_-4px_rgba(56,189,248,0.1)] transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+            <div class="bg-white dark:bg-[#1a1c23] border border-gray-200 dark:border-white/10 rounded-xl p-6 h-full hover:border-blue-400/50 dark:hover:border-blue-400/40 hover:shadow-[0_4px_20px_-4px_rgba(59,130,246,0.1)] transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                <div>
-                 <h3 class="text-lg font-bold mb-3 text-gray-900 dark:text-gray-100 group-hover:text-accent dark:group-hover:text-blue-400 relative z-10 flex justify-between items-center transition-colors">
+                 <h3 class="text-lg font-bold mb-3 text-gray-900 dark:text-gray-100 group-hover:text-blue-500 dark:group-hover:text-blue-400 relative z-10 flex justify-between items-center transition-colors">
                    {note.data.title}
                  </h3>
                  <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed relative z-10 line-clamp-2">
                    {note.data.description}
                  </p>
                </div>
-               <div class="mt-4 flex items-center text-xs font-semibold text-accent opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0">
-                 阅读文档 <span class="text-lg ml-1 leading-none">→</span>
+               <div class="mt-4 flex items-center text-xs font-semibold text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0">
+                 开始学习 <span class="text-lg ml-1 leading-none">→</span>
+               </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-4 mb-8">
+        <div class="flex-1 h-px bg-gray-200 dark:bg-white/10"></div>
+        <span class="text-sm text-gray-500 dark:text-gray-400 font-medium px-4">第二阶段：超级个体实战 (星球专属)</span>
+        <div class="flex-1 h-px bg-gray-200 dark:bg-white/10"></div>
+      </div>
+
+      <!-- Projects Resources -->
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        {allNotes.filter(note => note.slug.startsWith('projects/')).map((note) => (
+          <a href={`/vibecoding/${note.slug}`} class="group block">
+            <div class="bg-violet-50/50 dark:bg-[#1f1a24] border border-violet-100 dark:border-violet-500/10 rounded-xl p-6 h-full hover:border-violet-400/50 dark:hover:border-violet-400/40 hover:shadow-[0_4px_20px_-4px_rgba(139,92,246,0.15)] transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+               <div class="absolute top-6 right-6 text-violet-400 opacity-50 group-hover:opacity-100 transition-opacity">🔒</div>
+               <div class="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+               <div>
+                 <h3 class="text-lg font-bold mb-3 text-gray-900 dark:text-gray-100 group-hover:text-violet-600 dark:group-hover:text-violet-400 relative z-10 flex items-center gap-2 transition-colors pr-6">
+                   {note.data.title}
+                 </h3>
+                 <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed relative z-10 line-clamp-2">
+                   {note.data.description}
+                 </p>
+               </div>
+               <div class="mt-4 flex items-center text-xs font-semibold text-violet-600 dark:text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0">
+                 解锁实战项目 <span class="text-lg ml-1 leading-none">→</span>
                </div>
             </div>
           </a>

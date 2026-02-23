@@ -31,6 +31,14 @@ const vibecoding = defineCollection({
         description: z.string(),
         pubDate: z.coerce.date(),
         order: z.number().default(0),
+        // Monetization fields
+        category: z.enum(['foundation', 'project', 'article']).default('article'),
+        level: z.enum(['beginner', 'intermediate', 'advanced']).default('intermediate'),
+        tier: z.enum(['free', 'premium']).default('free'),
+        estimatedTime: z.string().optional(),
+        tags: z.array(z.string()).default([]),
+        githubRepo: z.string().url().optional(),
+        videoUrl: z.string().url().optional(),
     }),
 });
 
