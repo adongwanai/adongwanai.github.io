@@ -105,7 +105,7 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
 
         <!-- Social Proof Stats -->
         <div class="mt-12 pt-8 border-t border-gray-200 dark:border-white/5">
-          <div class="flex gap-8 justify-center flex-wrap">
+          <div class="flex gap-6 justify-center flex-wrap">
             <div class="text-center">
               <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">2,000+</div>
               <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">GitHub Stars</div>
@@ -114,7 +114,14 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
               <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">40,000+</div>
               <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">社交媒体粉丝</div>
             </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">4,000+</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">LLM🔗成员</div>
+            </div>
           </div>
+
+    
+
         </div>
 
           <div class="mt-8">
@@ -124,6 +131,7 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
                 { name: "GitHub", icon: "📦", stats: "2.0k+ Stars", link: "https://github.com/adongwanai" },
                 { name: "小红书", icon: "📕", stats: "13k+ Fans", link: "https://www.xiaohongshu.com/user/profile/5f310fd50000000001009df5" },
                 { name: "抖音", icon: "🎵", stats: "5k+ Fans", link: "https://v.douyin.com/2Qiz6Kxj6Dc/" },
+                { name: "Twitter/X", icon: "🔗", stats: "@tracker_ti87700", link: "https://x.com/tracker_ti87700" },
                 { name: "微信公众号", icon: "💬", stats: "3k+ Readers", link: "https://mp.weixin.qq.com/s/yMXYyeSq3NrLGd8p6OIf-A" },
               ].map((platform) => (
                 <a href={platform.link} target="_blank" class="flex items-center gap-3 px-4 py-2 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg hover:border-blue-500/30 hover:bg-blue-500/5 transition-all group min-w-[140px]">
