@@ -52,9 +52,29 @@ const getPath = (path: string) => {
     <meta property="twitter:image" content="https://adongwanai.github.io/og-image.jpg" />
 
     <!-- Additional SEO -->
-    <meta name="keywords" content="大模型算法工程师, AI Agent 开发, Vibe Coding, Claude Skills, MCP 服务器, AI 工作流, LLM, Astro" />
-    <meta name="author" content="阿东玩AI" />
+    <meta name="keywords" content="AI Agent Architect, RAG Pipeline Expert, LLM Orchestration, AI-Native Product Builder, Vibe Coding" />
+    <meta name="author" content="阿东玩AI - Super Individual Builder" />
     <meta name="theme-color" content="#3b82f6" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "阿东玩AI",
+        "url": "https://adongwanai.github.io",
+        "image": "https://adongwanai.github.io/og-image.jpg",
+        "sameAs": [
+          "https://github.com/adongwanai",
+          "https://www.xiaohongshu.com/user/profile/5f310fd50000000001009df5"
+        ],
+        "jobTitle": "AI Agent Architect & Builder",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Super Individual Ecosystem"
+        },
+        "description": "Empowering developers to become AI-Native Product Builders. Architect of the OpenClaw AI Operating System.",
+        "knowsAbout": ["Artificial Intelligence", "RAG Pipeline Architecture", "LLM Orchestration", "Vibe Coding", "Reverse Prompting"]
+      }
+    </script>
     <script is:inline>
       // Prevent Flash of Unstyled Content
       // Set the dark class based on local storage or system preference
@@ -79,7 +99,7 @@ const getPath = (path: string) => {
             <li><a href={getPath('/#about')} class={`transition-colors duration-300 text-sm font-medium ${Astro.url.pathname === '/#about' ? 'text-accent font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}`}>关于我</a></li>
             <li><a href="https://github.com/adongwanai" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300 text-sm font-medium flex items-center gap-1">GitHub<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a></li>
             <li>
-              <a href={getPath('/skills')} class={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border flex items-center gap-2 shadow-[0_0_15px_rgba(59,130,246,0.1)] dark:shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] dark:hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] ${Astro.url.pathname.startsWith('/skills') ? 'bg-blue-600 text-white border-blue-600 dark:bg-blue-500 dark:border-blue-500' : 'bg-blue-50 dark:bg-accent/10 text-accent hover:bg-blue-100 dark:hover:bg-accent/20 border-blue-200 dark:border-accent/20'}`}>
+              <a href="https://adongwanai.github.io/AgentGuide/" target="_blank" rel="noopener" class={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border flex items-center gap-2 shadow-[0_0_15px_rgba(59,130,246,0.1)] dark:shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] dark:hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] ${Astro.url.pathname.startsWith('/skills') ? 'bg-blue-600 text-white border-blue-600 dark:bg-blue-500 dark:border-blue-500' : 'bg-blue-50 dark:bg-accent/10 text-accent hover:bg-blue-100 dark:hover:bg-accent/20 border-blue-200 dark:border-accent/20'}`}>
                 <span>✨</span> Agent Skills 库
               </a>
             </li>
@@ -136,7 +156,7 @@ const getPath = (path: string) => {
             <a href={getPath('/vibecoding')} class={`mobile-nav-link py-3 px-4 rounded-lg transition-all duration-300 font-medium ${Astro.url.pathname.startsWith('/vibecoding') ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10' : 'text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-white/5'}`}>📚 Vibe Coding 专栏库</a>
             <a href={getPath('/#about')} class="mobile-nav-link text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-3 px-4 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300 font-medium">关于我</a>
             <a href="https://github.com/adongwanai" target="_blank" class="mobile-nav-link text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-3 px-4 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300 font-medium flex items-center gap-2">GitHub <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
-            <a href={getPath('/skills')} class={`mobile-nav-link py-3 px-4 rounded-lg font-semibold transition-all duration-300 ${Astro.url.pathname.startsWith('/skills') ? 'bg-blue-600 text-white dark:bg-blue-500' : 'text-accent bg-blue-50 dark:bg-accent/10 hover:bg-blue-100 dark:hover:bg-accent/20'}`}>✨ Agent Skills 库</a>
+            <a href="https://adongwanai.github.io/AgentGuide/" target="_blank" rel="noopener" class={`mobile-nav-link py-3 px-4 rounded-lg font-semibold transition-all duration-300 ${Astro.url.pathname.startsWith('/skills') ? 'bg-blue-600 text-white dark:bg-blue-500' : 'text-accent bg-blue-50 dark:bg-accent/10 hover:bg-blue-100 dark:hover:bg-accent/20'}`}>✨ Agent Skills 库</a>
             <a href="https://xyzq.xyz" target="_blank" class="mobile-nav-link py-3 px-4 rounded-lg font-bold text-white bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 transition-all duration-300 shadow-md flex items-center gap-2">💎 加入实战社区</a>
           </nav>
         </div>
