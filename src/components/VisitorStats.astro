@@ -2,50 +2,28 @@
 /**
  * Visitor Statistics Component
  *
- * Displays visitor map using ClustrMaps
- * Data is stored permanently by ClustrMaps service (free)
+ * Displays ClustrMaps visitor tracking widget
+ * Uses JavaScript version for dynamic, real-time updates
  */
-
-const CLUSTR_MAPS_KEY = "NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ";
 ---
 
 <div class="visitor-stats-section">
   <div class="visitor-stats-header">
-    <h3 class="text-center text-sm font-mono text-gray-600 dark:text-gray-400 mb-6">
+    <h3 class="visitor-stats-title">
       🌍 VISITOR STATISTICS
     </h3>
   </div>
 
   <div class="visitor-stats-content">
-    <!-- ClustrMaps Visitor Map -->
-    <div class="map-container">
-      <a
-        href="https://clustrmaps.com/site/{CLUSTR_MAPS_KEY}"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="map-link"
-      >
-        <img
-          src={`//www.clustrmaps.com/map_v2.png?d=${CLUSTR_MAPS_KEY}&cl=ffffff&w=a&t=tt`}
-          alt="Visitor locations map"
-          class="map-image"
-        />
-      </a>
+    <!-- ClustrMaps Script Widget -->
+    <div class="clustrmaps-widget">
+      <script
+        id="clustrmaps"
+        is:inline
+        type="text/javascript"
+        src="//clustrmaps.com/map_v2.js?d=NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ&cl=ffffff&w=a"
+      ></script>
     </div>
-
-    <!-- Additional Info -->
-    <p class="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
-      📍 Real-time visitor tracking worldwide
-      <span class="mx-2">•</span>
-      <a
-        href="https://clustrmaps.com/site/{CLUSTR_MAPS_KEY}"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-blue-600 dark:text-blue-400 hover:underline"
-      >
-        View full stats →
-      </a>
-    </p>
   </div>
 </div>
 
@@ -53,52 +31,48 @@ const CLUSTR_MAPS_KEY = "NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ";
   .visitor-stats-section {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid;
-    border-color: rgb(229 231 235);
+    padding-bottom: 2rem;
+    border-top: 1px solid rgb(229 231 235);
   }
 
   :global(.dark) .visitor-stats-section {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .visitor-stats-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .visitor-stats-title {
+    font-size: 0.875rem;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-weight: 400;
+    color: rgb(107 114 128);
+  }
+
+  :global(.dark) .visitor-stats-title {
+    color: rgb(156 163 175);
   }
 
   .visitor-stats-content {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 1.5rem;
     padding: 0 1rem;
   }
 
-  .map-container {
+  .clustrmaps-widget {
+    width: 100%;
+    max-width: 800px;
+    min-height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px;
-    width: 100%;
-    max-width: 800px;
   }
 
-  .map-link {
-    display: block;
-    transition: opacity 0.2s ease;
-  }
-
-  .map-link:hover {
-    opacity: 0.9;
-  }
-
-  .map-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.75rem;
-    box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-
-  :global(.dark) .map-image {
-    box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.3),
-      0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  /* Ensure ClustrMaps container has space to render */
+  .clustrmaps-widget :global(div) {
+    max-width: 100% !important;
   }
 </style>
