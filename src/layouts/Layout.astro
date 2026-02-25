@@ -5,6 +5,7 @@ import '@fontsource/inter/600.css';
 import '@fontsource/inter/700.css';
 import '@fontsource/jetbrains-mono';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
 interface Props {
   title?: string;
@@ -75,6 +76,10 @@ const getPath = (path: string) => {
         "knowsAbout": ["Artificial Intelligence", "RAG Pipeline Architecture", "LLM Orchestration", "Vibe Coding", "Reverse Prompting"]
       }
     </script>
+
+    <!-- Google Analytics -->
+    {import.meta.env.PUBLIC_GA_ID && <GoogleAnalytics measurementId={import.meta.env.PUBLIC_GA_ID} />}
+
     <script is:inline>
       // Prevent Flash of Unstyled Content
       // Set the dark class based on local storage or system preference

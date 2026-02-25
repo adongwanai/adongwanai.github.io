@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Terminal from '../components/Terminal.astro';
+import VisitorStats from '../components/VisitorStats.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
@@ -672,6 +673,11 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
   <!-- Terminal Section -->
   <section class="py-12">
     <Terminal />
+  </section>
+
+  <!-- Visitor Stats Section -->
+  <section class="py-8 bg-gray-50 dark:bg-white/5">
+    <VisitorStats />
   </section>
 
 </Layout>

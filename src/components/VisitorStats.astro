@@ -1,0 +1,152 @@
+---
+/**
+ * Visitor Stats Component
+ *
+ * Displays visitor statistics including hit counter and visitor map.
+ *
+ * DATA PERSISTENCE: These services use their own servers to store data permanently.
+ * You don't need to maintain any database - it's all handled for free!
+ *
+ * SETUP INSTRUCTIONS:
+ * 1. Choose a service from the options below
+ * 2. Visit their website to get your widget code
+ * 3. Replace the placeholder code in this file
+ * 4. Push to GitHub - it will automatically work!
+ *
+ * For detailed setup guide, see: docs/VISITOR_STATS_SETUP.md
+ */
+
+// Configuration - Set to true to enable each widget
+const ENABLE_CLUSTR_MAPS = true;
+const ENABLE_REVOLVER_MAPS = false;
+const ENABLE_HIT_COUNTER = false;
+---
+
+<div class="visitor-stats-container mt-12 pt-8 border-t border-gray-200 dark:border-white/10">
+  <h3 class="text-center text-sm font-mono text-gray-600 dark:text-gray-400 mb-6">
+    🌍 VISITOR STATISTICS
+  </h3>
+
+  <div class="flex flex-col md:flex-row gap-8 items-center justify-center flex-wrap">
+
+    <!-- ===== OPTION 1: Hit Counter ===== -->
+    {ENABLE_HIT_COUNTER && (
+      <div class="flex flex-col items-center gap-3">
+        <div class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">
+          Total Visitors
+        </div>
+
+        <!-- Replace src with your HitWebCounter code -->
+        <!-- Get your code at: https://www.hitwebcounter.com/ -->
+        <a href="https://www.hitwebcounter.com" target="_blank" rel="nofollow">
+          <img
+            src="https://hitwebcounter.com/counter/counter.php?page=YOUR_PAGE_ID&style=0006&nbdigits=6&type=ip&initCount=0"
+            title="Free Counter"
+            alt="web counter"
+            class="h-10 opacity-90 hover:opacity-100 transition-opacity border-0"
+          />
+        </a>
+      </div>
+    )}
+
+    <!-- ===== OPTION 2: ClustrMaps 2D Map ===== -->
+    {ENABLE_CLUSTR_MAPS && (
+      <div class="flex flex-col items-center gap-3">
+        <div class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">
+          Visitor Locations
+        </div>
+
+        <!-- ClustrMaps Widget - Interactive Map -->
+        <!-- Get your code at: https://clustrmaps.com/ -->
+        <script
+          id="clustrmaps"
+          is:inline
+          type="text/javascript"
+          src="//clustrmaps.com/map_v2.js?d=NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ&cl=ffffff&w=a"
+        ></script>
+
+        <a
+          href="https://clustrmaps.com/site/YOUR_SITE_ID"
+          target="_blank"
+          rel="nofollow"
+          class="text-xs text-blue-600 dark:text-blue-400 hover:underline opacity-70 hover:opacity-100 transition-opacity"
+        >
+          View full statistics →
+        </a>
+      </div>
+    )}
+
+    <!-- ===== OPTION 3: RevolverMaps 3D Globe ===== -->
+    {ENABLE_REVOLVER_MAPS && (
+      <div class="flex flex-col items-center gap-3">
+        <div class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">
+          Live Visitor Map
+        </div>
+
+        <!-- Replace src with your RevolverMaps code -->
+        <!-- Get your code at: https://www.revolvermaps.com/ -->
+        <script
+          type="text/javascript"
+          src="//rf.revolvermaps.com/0/0/8.js?i=YOUR_ID&m=0&c=0099ff&cr1=ffffff&f=arial&l=33&lw=0&lh=0&v=0"
+          async="async"
+        ></script>
+      </div>
+    )}
+
+    ===== PLACEHOLDER - Setup Your Widgets ===== -->
+    {!ENABLE_HIT_COUNTER && !ENABLE_CLUSTR_MAPS && !ENABLE_REVOLVER_MAPS && (
+      <div class="flex flex-col items-center gap-4 p-6 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-500/20 rounded-lg max-w-md">
+        <div class="text-3xl">🗺️</div>
+        <div class="text-sm text-gray-700 dark:text-gray-300 text-center">
+          <p class="font-semibold mb-2">Visitor stats widget not configured</p>
+          <p class="text-xs text-gray-600 dark:text-gray-400">
+            To enable visitor map and counter, see <code class="bg-blue-100 dark:bg-blue-900/20 px-1 rounded">docs/VISITOR_STATS_SETUP.md</code>
+          </p>
+        </div>
+        <a
+          href="https://clustrmaps.com/"
+          target="_blank"
+          class="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+        >
+          Get free visitor map →
+        </a>
+      </div>
+    )}
+
+  </div>
+
+  <p class="text-center text-xs text-gray-500 dark:text-gray-400 mt-6">
+    Data stored securely by third-party service • Updated in real-time
+  </p>
+</div>
+
+<style>
+  .visitor-stats-container {
+    /* Gradient background for visual appeal */
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(59, 130, 246, 0.03),
+      transparent
+    );
+  }
+
+  /* Optional: Add hover effects to widgets */
+  .visitor-stats-container a {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .visitor-stats-container a:hover {
+    transform: scale(1.02);
+  }
+
+  /* Dark mode adjustments */
+  :global(.dark) .visitor-stats-container {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(139, 92, 246, 0.05),
+      transparent
+    );
+  }
+</style>
