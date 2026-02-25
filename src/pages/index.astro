@@ -134,6 +134,8 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
                 { name: "抖音", icon: "🎵", stats: "5k+ Fans", link: "https://v.douyin.com/2Qiz6Kxj6Dc/" },
                 { name: "Twitter/X", icon: "🔗", stats: "@tracker_ti87700", link: "https://x.com/tracker_ti87700" },
                 { name: "微信公众号", icon: "💬", stats: "3k+ Readers", link: "https://mp.weixin.qq.com/s/yMXYyeSq3NrLGd8p6OIf-A" },
+                { name: "QQ邮箱", icon: "📧", stats: "1806874707", link: "mailto:1806874707@qq.com" },
+                { name: "微信", icon: "💚", stats: "abc061200x", link: "wechat:abc061200x" },
               ].map((platform) => (
                 <a href={platform.link} target="_blank" class="flex items-center gap-3 px-4 py-2 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg hover:border-blue-500/30 hover:bg-blue-500/5 transition-all group min-w-[140px]">
                   <span class="text-xl group-hover:scale-110 transition-transform duration-300">{platform.icon}</span>
@@ -568,28 +570,6 @@ const sortedProjects = projectStats.sort((a, b) => a.data.order - b.data.order);
                </div>
              </div>
            </div>
-        </div>
-      </div>
-      <div class="mt-20 pt-8 border-t border-gray-200 dark:border-white/5">
-        <div class="flex flex-col md:flex-row gap-8 justify-center md:justify-start">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">📧</span>
-            <div>
-              <div class="text-xs text-gray-600 dark:text-gray-400">Email</div>
-              <a href="mailto:contact@adong.ai" class="text-gray-700 dark:text-gray-300 hover:text-white transition-colors duration-300 cursor-pointer">contact@adong.ai</a>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 group relative cursor-pointer">
-            <span class="text-2xl">🟢</span>
-            <div>
-              <div class="text-xs text-gray-600 dark:text-gray-400">WeChat</div>
-              <div class="text-gray-700 dark:text-gray-300">abc061200x</div>
-            </div>
-            <!-- QR Popup -->
-            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto bg-white p-2 rounded-lg shadow-xl">
-               <div class="w-32 h-32 bg-gray-200 flex items-center justify-center text-black text-xs">QR Code</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
