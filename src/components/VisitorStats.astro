@@ -56,23 +56,22 @@ const ENABLE_HIT_COUNTER = false;
           Visitor Locations
         </div>
 
-        <!-- ClustrMaps Widget - Interactive Map -->
+        <!-- ClustrMaps Widget - Image version (works locally too!) -->
         <!-- Get your code at: https://clustrmaps.com/ -->
-        <script
-          id="clustrmaps"
-          is:inline
-          type="text/javascript"
-          src="//clustrmaps.com/map_v2.js?d=NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ&cl=ffffff&w=a"
-        ></script>
-
-        <a
-          href="https://clustrmaps.com/site/YOUR_SITE_ID"
-          target="_blank"
-          rel="nofollow"
-          class="text-xs text-blue-600 dark:text-blue-400 hover:underline opacity-70 hover:opacity-100 transition-opacity"
-        >
-          View full statistics →
-        </a>
+        <div class="clustrmaps-container">
+          <a
+            href="https://clustrmaps.com/site/YOUR_SITE_ID"
+            target="_blank"
+            rel="nofollow"
+            class="hover:opacity-90 transition-opacity"
+          >
+            <img
+              src="//www.clustrmaps.com/map_v2.png?d=NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ&cl=ffffff&w=a&t=tt"
+              alt="Visitor locations map"
+              class="rounded-lg shadow-md"
+            />
+          </a>
+        </div>
       </div>
     )}
 
@@ -129,6 +128,16 @@ const ENABLE_HIT_COUNTER = false;
       rgba(59, 130, 246, 0.03),
       transparent
     );
+  }
+
+  /* ClustrMaps container styling */
+  .clustrmaps-container {
+    min-height: 200px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
   }
 
   /* Optional: Add hover effects to widgets */

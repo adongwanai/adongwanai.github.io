@@ -1,0 +1,17 @@
+---
+interface Props {
+  measurementId: string;
+}
+
+const { measurementId } = Astro.props;
+---
+
+<!-- Google Analytics 4 -->
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{measurementId}');
+</script>
+
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`} is:inline></script>
