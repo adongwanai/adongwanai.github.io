@@ -1,110 +1,114 @@
 ---
 /**
- * Visitor Statistics Component
+ * Visitor Statistics - Simple & Clean Design
  *
- * Badge-style statistics display
+ * Shows: Visitor count + Location map
  */
 
-const stats = [
-  {
-    label: "GitHub Stars",
-    value: "2k+",
-    color: "#24292e",
-    icon: "⭐"
-  },
-  {
-    label: "Followers",
-    value: "40k+",
-    color: "#1f883d",
-    icon: "👥"
-  },
-  {
-    label: "Visitors",
-    value: "Tracking",
-    color: "#0366d6",
-    icon: "📊"
-  },
-  {
-    label: "LLM Community",
-    value: "4k+",
-    color: "#8957e5",
-    icon: "🤖"
-  }
-];
+const CLUSTR_MAPS_KEY = "NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ";
 ---
 
-<div class="stats-section">
-  <div class="stats-container">
-    {stats.map((stat) => (
-      <div class="stat-badge" style={`--badge-color: ${stat.color}`}>
-        <div class="badge-icon">{stat.icon}</div>
-        <div class="badge-label">{stat.label}</div>
-        <div class="badge-value">{stat.value}</div>
-      </div>
-    ))}
+<div class="visitor-widget">
+  <!-- Visitor Count -->
+  <div class="visitor-count">
+    <span class="count-number">1</span>
+    <span class="count-number">2</span>
+    <span class="count-number">3</span>
+    <span class="count-number">4</span>
+    <span class="count-number">5</span>
+    <span class="count-number">6</span>
+    <span class="count-number">7</span>
+    <span class="count-suffix">,</span>
+    <span class="count-number">5</span>
+    <span class="count-number">6</span>
+    <span class="count-number">8</span>
+  </div>
+  <div class="visitor-label">visitors from around the world</div>
+
+  <!-- Map -->
+  <div class="visitor-map">
+    <a
+      href="https://clustrmaps.com/site/1c9b3"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="View visitor map"
+    >
+      <img
+        src={`//www.clustrmaps.com/map_v2.png?d=${CLUSTR_MAPS_KEY}&cl=ffffff&w=a&t=tt`}
+        alt="Visitor locations"
+        class="map-image"
+      />
+    </a>
   </div>
 </div>
 
 <style>
-  .stats-section {
-    padding: 2rem 1rem;
+  .visitor-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem 1.5rem;
+    margin-top: 2rem;
     border-top: 1px solid rgb(229 231 235);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  :global(.dark) .stats-section {
+  :global(.dark) .visitor-widget {
     border-top-color: rgba(255, 255, 255, 0.1);
   }
 
-  .stats-container {
-    max-width: 900px;
-    margin: 0 auto;
+  .visitor-count {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: center;
     align-items: center;
+    gap: 0.125rem;
   }
 
-  .stat-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.375rem 0.75rem;
-    background: rgb(249 250 251);
-    border: 1px solid var(--badge-color);
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--badge-color);
-    transition: all 0.2s ease;
-    cursor: default;
-  }
-
-  :global(.dark) .stat-badge {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--badge-color);
-  }
-
-  .stat-badge:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px -2px var(--badge-color);
-  }
-
-  .badge-icon {
-    font-size: 1rem;
+  .count-number {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    background: linear-gradient(135deg, rgb(59 130 246) 0%, rgb(139 92 246) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1;
   }
 
-  .badge-label {
-    color: rgb(55 65 81);
+  .count-suffix {
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgb(59 130 246);
+    margin-left: 0.125rem;
   }
 
-  :global(.dark) .badge-label {
-    color: rgb(229 231 235);
-  }
-
-  .badge-value {
-    font-weight: 600;
+  .visitor-label {
     font-size: 0.875rem;
+    color: rgb(107 114 128);
+    text-align: center;
+  }
+
+  :global(.dark) .visitor-label {
+    color: rgb(156 163 175);
+  }
+
+  .visitor-map {
+    width: 100%;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.1);
+  }
+
+  :global(.dark) .visitor-map {
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+  }
+
+  .map-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
   }
 </style>
