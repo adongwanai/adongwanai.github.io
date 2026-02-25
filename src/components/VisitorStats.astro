@@ -1,27 +1,31 @@
 ---
 /**
- * Visitor Statistics - Simple & Clean Design
+ * Visitor Statistics - Real Counter + Map
  *
- * Shows: Visitor count + Location map
+ * Shows: Real-time visitor count + Location map
+ * Using HitWebCounter for real visitor data
  */
 
 const CLUSTR_MAPS_KEY = "NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ";
+const HITWEBCOUNTER_ID = "adongportfolio";
 ---
 
 <div class="visitor-widget">
   <!-- Visitor Count -->
   <div class="visitor-count">
-    <span class="count-number">1</span>
-    <span class="count-number">2</span>
-    <span class="count-number">3</span>
-    <span class="count-number">4</span>
-    <span class="count-number">5</span>
-    <span class="count-number">6</span>
-    <span class="count-number">7</span>
-    <span class="count-suffix">,</span>
-    <span class="count-number">5</span>
-    <span class="count-number">6</span>
-    <span class="count-number">8</span>
+    <a
+      href="https://www.hitwebcounter.com"
+      target="_blank"
+      rel="nofollow"
+      class="counter-link"
+    >
+      <img
+        src={`https://hitwebcounter.com/counter/counter.php?page=${HITWEBCOUNTER_ID}&style=0038&nbdigits=6&type=page&initCount=120000`}
+        alt="Visitor counter"
+        title="Free Counter"
+        class="counter-img"
+      />
+    </a>
   </div>
   <div class="visitor-label">visitors from around the world</div>
 
@@ -63,25 +67,20 @@ const CLUSTR_MAPS_KEY = "NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ";
   .visitor-count {
     display: flex;
     align-items: center;
-    gap: 0.125rem;
   }
 
-  .count-number {
-    font-size: 2rem;
-    font-weight: 700;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    background: linear-gradient(135deg, rgb(59 130 246) 0%, rgb(139 92 246) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
+  .counter-link {
+    display: block;
+    transition: opacity 0.2s ease;
   }
 
-  .count-suffix {
-    font-size: 2rem;
-    font-weight: 700;
-    color: rgb(59 130 246);
-    margin-left: 0.125rem;
+  .counter-link:hover {
+    opacity: 0.85;
+  }
+
+  .counter-img {
+    height: 2.5rem;
+    width: auto;
   }
 
   .visitor-label {
