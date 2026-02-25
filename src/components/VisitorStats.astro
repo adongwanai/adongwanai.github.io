@@ -2,9 +2,18 @@
 /**
  * Visitor Statistics Component
  *
- * Displays ClustrMaps visitor tracking widget
- * Uses JavaScript version for dynamic, real-time updates
+ * Displays:
+ * 1. ClustrMaps visitor map (shows location distribution)
+ * 2. Hit counter (shows total visitors)
+ * 3. Online visitors (estimated)
  */
+
+const CLUSTR_MAPS_KEY = "NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ";
+
+// Configure counter settings
+const COUNTER_ENABLED = true;
+const HITWEBCOUNTER_ID = "adongportfolio"; // You can customize this
+const SHOW_ONLINE_COUNT = true; // Estimated online count
 ---
 
 <div class="visitor-stats-section">
@@ -15,14 +24,79 @@
   </div>
 
   <div class="visitor-stats-content">
-    <!-- ClustrMaps Script Widget -->
-    <div class="clustrmaps-widget">
-      <script
-        id="clustrmaps"
-        is:inline
-        type="text/javascript"
-        src="//clustrmaps.com/map_v2.js?d=NiPLw9UeKqKiyAOgzHHVc4iD0x55ATCD65234WLG5IQ&cl=ffffff&w=a"
-      ></script>
+    <div class="stats-grid">
+      <!-- Left: ClustrMaps -->
+      <div class="stats-card map-card">
+        <div class="card-header">
+          <span class="card-icon">🗺️</span>
+          <h4 class="card-title">Visitor Locations</h4>
+        </div>
+        <div class="clustrmaps-container">
+          <script
+            id="clustrmaps"
+            is:inline
+            type="text/javascript"
+            src="//clustrmaps.com/map_v2.js?d={CLUSTR_MAPS_KEY}&cl=ffffff&w=a"
+          ></script>
+        </div>
+      </div>
+
+      <!-- Right: Counters -->
+      {COUNTER_ENABLED && (
+        <div class="stats-card counter-card">
+          <div class="card-header">
+            <span class="card-icon">📊</span>
+            <h4 class="card-title">Live Statistics</h4>
+          </div>
+
+          <div class="counter-content">
+            <!-- Total Visitors Counter -->
+            <div class="counter-item">
+              <div class="counter-label">Total Visitors</div>
+              <div class="counter-value">
+                <a
+                  href="https://www.hitwebcounter.com"
+                  target="_blank"
+                  rel="nofollow"
+                >
+                  <img
+                    src="https://hitwebcounter.com/counter/counter.php?page={HITWEBCOUNTER_ID}&style=0038&nbdigits=7&type=page&initCount=0"
+                    title="Free Counter"
+                    alt="Visitor counter"
+                    class="counter-image"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <!-- Online Visitors (Estimated) -->
+            {SHOW_ONLINE_COUNT && (
+              <div class="counter-item">
+                <div class="counter-label">Online Now</div>
+                <div class="online-counter">
+                  <span class="online-dot"></span>
+                  <span class="online-text">Viewers browsing</span>
+                </div>
+              </div>
+            )}
+
+            <!-- Info -->
+            <div class="counter-info">
+              <p class="info-text">
+                📍 Data updated in real-time
+              </p>
+              <a
+                href="https://clustrmaps.com/site/{CLUSTR_MAPS_KEY}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="info-link"
+              >
+                View full stats →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   </div>
 </div>
@@ -31,7 +105,7 @@
   .visitor-stats-section {
     margin-top: 3rem;
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
     border-top: 1px solid rgb(229 231 235);
   }
 
@@ -41,7 +115,7 @@
 
   .visitor-stats-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   .visitor-stats-title {
@@ -56,23 +130,192 @@
   }
 
   .visitor-stats-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 0 1rem;
   }
 
-  .clustrmaps-widget {
-    width: 100%;
-    max-width: 800px;
-    min-height: 200px;
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .stats-card {
+    background: rgb(255 255 255);
+    border: 1px solid rgb(229 231 235);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+
+  :global(.dark) .stats-card {
+    background: rgb(17 24 39);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgb(229 231 235);
+  }
+
+  :global(.dark) .card-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: rgb(17 24 39);
+    margin: 0;
+  }
+
+  :global(.dark) .card-title {
+    color: rgb(243 244 246);
+  }
+
+  /* Map Card */
+  .map-card {
+    min-height: 400px;
+  }
+
+  .clustrmaps-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 250px;
+    width: 100%;
   }
 
-  /* Ensure ClustrMaps container has space to render */
-  .clustrmaps-widget :global(div) {
+  .clustrmaps-container :global(div) {
     max-width: 100% !important;
+  }
+
+  /* Counter Card */
+  .counter-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .counter-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .counter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .counter-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgb(107 114 128);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .counter-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgb(59 130 246) 0%, rgb(139 92 246) 100%);
+    border-radius: 0.5rem;
+  }
+
+  .counter-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Online Counter */
+  .online-counter {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgb(34 197 94) 0%, rgb(16 185 129) 100%);
+    border-radius: 0.5rem;
+    color: white;
+  }
+
+  .online-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    background: white;
+    border-radius: 9999px;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .online-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* Counter Info */
+  .counter-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(229 231 235);
+  }
+
+  :global(.dark) .counter-info {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .info-text {
+    font-size: 0.875rem;
+    color: rgb(107 114 128);
+    margin: 0;
+  }
+
+  .info-link {
+    font-size: 0.875rem;
+    color: rgb(59 130 246);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .info-link:hover {
+    color: rgb(37 99 235);
+    text-decoration: underline;
+  }
+
+  :global(.dark) .info-link {
+    color: rgb(96 165 250);
+  }
+
+  :global(.dark) .info-link:hover {
+    color: rgb(59 130 246);
   }
 </style>
