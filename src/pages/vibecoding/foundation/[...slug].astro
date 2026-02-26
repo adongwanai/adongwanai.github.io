@@ -17,24 +17,28 @@ export async function getStaticPaths() {
 }
 
 const { note } = Astro.props;
-const { Content } = await note.render();
+const { Content, headings } = await note.render();
 
-// Get all foundation notes for navigation
+const currentSlug = note.slug;
+
+// Get all foundation notes for sidebar navigation
 const allFoundation = (await getCollection('vibecoding'))
   .filter(n => n.data.category === 'foundation')
   .sort((a, b) => a.data.order - b.data.order);
 
-const currentIndex = allFoundation.findIndex(n => n.slug === note.slug);
+const currentIndex = allFoundation.findIndex(n => n.slug === currentSlug);
 const prevNote = currentIndex > 0 ? allFoundation[currentIndex - 1] : null;
 const nextNote = currentIndex < allFoundation.length - 1 ? allFoundation[currentIndex + 1] : null;
+
+// Get headings for TOC (h2 and h3 only)
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 ---
 
 <Layout title={`${note.data.title} - Vibe Coding 基础课程`}>
   <div class="bg-gray-50 dark:bg-[#13151a] min-h-screen pt-[70px]">
-    <div class="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto pt-6 pb-24">
-
+    <div class="w-full px-4 sm:px-6 lg:px-8 pt-6 pb-24">
       <!-- Breadcrumb -->
-      <nav class="mb-6 text-sm">
+      <nav class="mb-6 text-sm pl-2 lg:ml-60">
         <ol class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
           <li><a href={getPath('/vibecoding')} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">📚 赚钱笔记</a></li>
           <li class="text-gray-400">/</li>
@@ -42,109 +46,225 @@ const nextNote = currentIndex < allFoundation.length - 1 ? allFoundation[current
         </ol>
       </nav>
 
-      <!-- Document Title Card -->
-      <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm mb-6">
-        <div class="flex items-center gap-3 mb-4 flex-wrap">
-          <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-semibold">
-            ✓ 免费课程
-          </span>
-          {note.data.level && (
-            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-sm font-semibold">
-              {note.data.level}
-            </span>
-          )}
-          {note.data.estimatedTime && (
-            <span class="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
-              ⏱️ {note.data.estimatedTime}
-            </span>
-          )}
-        </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">{note.data.title}</h1>
-        <p class="text-gray-600 dark:text-gray-400 mt-4 text-lg leading-relaxed">{note.data.description}</p>
-      </div>
+      <!-- Two Column Layout: Sidebar + Content -->
+      <div class="flex gap-8 lg:pr-72">
+        <!-- Left Sidebar: Course Navigation -->
+        <aside class="hidden lg:block fixed left-0 top-[70px] w-60 h-[calc(100vh-70px)] overflow-y-auto bg-white dark:bg-[#17181c] border-r border-gray-200 dark:border-white/5 p-4">
+          <div class="mb-4">
+            <h3 class="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-3">基础课程</h3>
+            <nav class="space-y-1">
+              {allFoundation.map((item, idx) => (
+                <a
+                  href={getPath(`/vibecoding/foundation/${item.slug.replace('foundation/', '')}`)}
+                  class={`block px-3 py-2 rounded-lg text-sm transition-all ${
+                    item.slug === currentSlug
+                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-gray-200'
+                  }`}
+                >
+                  <span class="text-gray-400 mr-1">{idx + 1}.</span>
+                  {item.data.title}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div class="border-t border-gray-200 dark:border-white/5 pt-4">
+            <a
+              href={getPath('/vibecoding/projects')}
+              class="block px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-gray-200 transition-all"
+            >
+              🚀 项目实战 →
+            </a>
+          </div>
+        </aside>
 
-      <!-- Document Content Card -->
-      <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm mb-6">
-        <article class="prose prose-gray dark:prose-invert prose-lg max-w-none
-          prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
-          prose-h2:text-2xl prose-h2:mt-12 prose-h2:border-b prose-h2:border-gray-200 dark:prose-h2:border-white/10 prose-h2:pb-2
-          prose-h3:text-xl
-          prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-          prose-img:rounded-xl prose-img:border prose-img:border-gray-200 dark:prose-img:border-white/10 prose-img:shadow-sm
-          prose-hr:border-gray-200 dark:prose-hr:border-white/10
-          prose-code:text-accent prose-code:bg-blue-50 dark:prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
-          prose-pre:border prose-pre:border-gray-200 dark:prose-border-white/10 prose-pre:bg-[#1e1e1e] prose-pre:shadow-sm">
-          <Content />
-        </article>
-      </div>
-
-      <!-- CTA Card -->
-      <div class="bg-gradient-to-br from-blue-50 to-violet-50 dark:from-blue-900/20 dark:to-violet-900/20 border border-blue-200 dark:border-blue-500/20 rounded-xl p-6 md:p-8 mb-6">
-        <div class="text-2xl mb-3">🎯</div>
-        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">掌握基础后，开始实战项目</h3>
-        <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-          通过完整的项目教程，深入学习如何构建生产级 AI 应用。从简历优化到自媒体自动化，从 Agent 开发到商业变现。
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <a
-            href={getPath('/vibecoding/projects')}
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            <span>浏览项目教程</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </a>
-          <a
-            href="https://xyzq.xyz"
-            target="_blank"
-            rel="noopener"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-300 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 rounded-lg font-bold transition-all duration-300"
-          >
-            <span>了解会员权益</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Tags -->
-      {note.data.tags && note.data.tags.length > 0 && (
-        <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 shadow-sm mb-6">
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="text-sm text-gray-600 dark:text-gray-400 font-medium">标签：</span>
-            {note.data.tags.map(tag => (
-              <span class="px-3 py-1 bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded-full text-sm">
-                {tag}
+        <!-- Main Content -->
+        <div class="flex-1 lg:ml-60 min-w-0">
+          <!-- Document Title Card -->
+          <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm mb-6">
+            <div class="flex items-center gap-3 mb-4 flex-wrap">
+              <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-semibold">
+                ✓ 免费课程
               </span>
-            ))}
+              {note.data.level && (
+                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-sm font-semibold">
+                  {note.data.level}
+                </span>
+              )}
+              {note.data.estimatedTime && (
+                <span class="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
+                  ⏱️ {note.data.estimatedTime}
+                </span>
+              )}
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">{note.data.title}</h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-4 text-lg leading-relaxed">{note.data.description}</p>
+          </div>
+
+          <!-- Document Content Card -->
+          <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 md:p-8 shadow-sm mb-6">
+            <article class="prose prose-gray dark:prose-invert prose-lg max-w-none
+              prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
+              prose-h2:text-2xl prose-h2:mt-12 prose-h2:border-b prose-h2:border-gray-200 dark:prose-h2:border-white/10 prose-h2:pb-2
+              prose-h3:text-xl
+              prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+              prose-img:rounded-xl prose-img:border prose-img:border-gray-200 dark:prose-img:border-white/10 prose-img:shadow-sm
+              prose-hr:border-gray-200 dark:prose-hr:border-white/10
+              prose-code:text-accent prose-code:bg-blue-50 dark:prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
+              prose-pre:border prose-pre:border-gray-200 dark:prose-border-white/10 prose-pre:bg-[#1e1e1e] prose-pre:shadow-sm">
+              <Content />
+            </article>
+          </div>
+
+          <!-- CTA Card -->
+          <div class="bg-gradient-to-br from-blue-50 to-violet-50 dark:from-blue-900/20 dark:to-violet-900/20 border border-blue-200 dark:border-blue-500/20 rounded-xl p-6 md:p-8 mb-6">
+            <div class="text-2xl mb-3">🎯</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">掌握基础后，开始实战项目</h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              通过完整的项目教程，深入学习如何构建生产级 AI 应用。从简历优化到自媒体自动化，从 Agent 开发到商业变现。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a
+                href={getPath('/vibecoding/projects')}
+                class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-all duration-300 shadow-md hover:shadow-lg"
+              >
+                <span>浏览项目教程</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+              </a>
+              <a
+                href="https://xyzq.xyz"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-300 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 rounded-lg font-bold transition-all duration-300"
+              >
+                <span>了解会员权益</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          {note.data.tags && note.data.tags.length > 0 && (
+            <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-6 shadow-sm mb-6">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-sm text-gray-600 dark:text-gray-400 font-medium">标签：</span>
+                {note.data.tags.map(tag => (
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Prev/Next Navigation -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {prevNote ? (
+              <a href={getPath(`/vibecoding/foundation/${prevNote.slug.replace('foundation/', '')}`)} class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-[#17181c] border border-gray-200 dark:border-white/5 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-md transition-all group">
+                <span class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase">← 上一篇</span>
+                <span class="text-accent font-medium group-hover:underline line-clamp-2">{prevNote.data.title}</span>
+              </a>
+            ) : <div></div>}
+
+            {nextNote ? (
+              <a href={getPath(`/vibecoding/foundation/${nextNote.slug.replace('foundation/', '')}`)} class="flex flex-col items-end text-right gap-1 p-5 rounded-xl bg-white dark:bg-[#17181c] border border-gray-200 dark:border-white/5 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-md transition-all group">
+                <span class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase">下一篇 →</span>
+                <span class="text-accent font-medium group-hover:underline line-clamp-2">{nextNote.data.title}</span>
+              </a>
+            ) : (
+              <a href={getPath('/vibecoding/projects')} class="flex flex-col items-end justify-center text-right gap-1 p-5 rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 hover:-translate-y-0.5 transition-all group">
+                <span class="text-xs text-white/80 font-bold tracking-wider uppercase">🎉 恭喜完成基础修炼！</span>
+                <span class="text-lg font-bold group-hover:underline line-clamp-2">点击解锁 8 大进阶实战项目 🚀</span>
+              </a>
+            )}
           </div>
         </div>
-      )}
 
-      <!-- Prev/Next Navigation -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {prevNote ? (
-          <a href={getPath(`/vibecoding/foundation/${prevNote.slug.replace('foundation/', '')}`)} class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-[#17181c] border border-gray-200 dark:border-white/5 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-md transition-all group">
-            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase">← 上一篇</span>
-            <span class="text-accent font-medium group-hover:underline line-clamp-2">{prevNote.data.title}</span>
-          </a>
-        ) : <div></div>}
-
-        {nextNote ? (
-          <a href={getPath(`/vibecoding/foundation/${nextNote.slug.replace('foundation/', '')}`)} class="flex flex-col items-end text-right gap-1 p-5 rounded-xl bg-white dark:bg-[#17181c] border border-gray-200 dark:border-white/5 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-md transition-all group">
-            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase">下一篇 →</span>
-            <span class="text-accent font-medium group-hover:underline line-clamp-2">{nextNote.data.title}</span>
-          </a>
-        ) : (
-          <a href={getPath('/vibecoding/projects')} class="flex flex-col items-end justify-center text-right gap-1 p-5 rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 hover:-translate-y-0.5 transition-all group">
-            <span class="text-xs text-white/80 font-bold tracking-wider uppercase">🎉 恭喜完成基础修炼！</span>
-            <span class="text-lg font-bold group-hover:underline line-clamp-2">点击解锁 8 大进阶实战项目 🚀</span>
-          </a>
+        <!-- Right Sidebar: Table of Contents -->
+        {tocHeadings.length > 0 && (
+          <aside class="hidden xl:block fixed right-4 top-[90px] w-72 max-h-[calc(100vh-120px)] overflow-y-auto">
+            <div class="bg-white dark:bg-[#17181c] rounded-xl border border-gray-200 dark:border-white/5 p-5">
+              <h4 class="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-4 pb-2 border-b border-gray-200 dark:border-white/5">目录</h4>
+              <nav class="space-y-2" id="toc-nav">
+                {tocHeadings.map(heading => (
+                  <a
+                    href={`#${heading.slug}`}
+                    data-heading={heading.slug}
+                    class={`block text-sm py-1.5 px-3 rounded-lg transition-all duration-200 toc-link ${
+                      heading.depth === 2
+                        ? 'text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400'
+                        : 'pl-6 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-700 dark:hover:text-gray-300'
+                    }`}
+                  >
+                    {heading.text}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
         )}
       </div>
-
     </div>
   </div>
 </Layout>
+
+<script>
+  // TOC scroll-based highlighting
+  function initTocHighlighter() {
+    const tocLinks = document.querySelectorAll('.toc-link');
+    if (tocLinks.length === 0) return;
+
+    const headingIds = Array.from(tocLinks).map(link => link.getAttribute('data-heading'));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          const id = entry.target.getAttribute('id');
+          const link = document.querySelector(`.toc-link[data-heading="${id}"]`);
+
+          if (link) {
+            if (entry.isIntersecting) {
+              // Remove active from all links
+              tocLinks.forEach(l => {
+                l.classList.remove('bg-blue-100', 'dark:bg-blue-900/30', 'text-blue-700', 'dark:text-blue-400', 'font-medium');
+              });
+              // Add active to current link
+              link.classList.add('bg-blue-100', 'dark:bg-blue-900/30', 'text-blue-700', 'dark:text-blue-400', 'font-medium');
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '-80px 0px -80% 0px',
+        threshold: 0
+      }
+    );
+
+    // Observe all headings
+    headingIds.forEach(id => {
+      const heading = document.getElementById(id);
+      if (heading) {
+        observer.observe(heading);
+      }
+    });
+
+    // Click to scroll smoothly
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = link.getAttribute('data-heading');
+        const heading = document.getElementById(id);
+        if (heading) {
+          heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  }
+
+  // Run on page load and after any dynamic content
+  document.addEventListener('DOMContentLoaded', initTocHighlighter);
+</script>
 
 <style>
   html {

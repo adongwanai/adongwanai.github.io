@@ -40,7 +40,7 @@ const groupedNotes = allNotes.reduce((acc, currentNote) => {
 
 <Layout title={`${note.data.title} - 阿东的 VibeCoding 赚钱笔记`}>
   <div class="bg-gray-50 dark:bg-[#13151a] min-h-screen pt-[70px]">
-    <div class="px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto flex flex-col md:flex-row gap-6 lg:gap-8 pt-6 pb-24">
+    <div class="px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row gap-6 lg:gap-8 pt-6 pb-24">
       
       <!-- Left Sidebar (Menu) -->
       <aside class="hidden md:block w-64 lg:w-72 shrink-0">
@@ -76,7 +76,7 @@ const groupedNotes = allNotes.reduce((acc, currentNote) => {
       </aside>
 
       <!-- Main Content Area -->
-      <main class="flex-1 min-w-0 max-w-4xl lg:px-4">
+      <main class="flex-1 min-w-0 lg:px-4">
         
         <!-- Breadcrumb -->
         <nav class="mb-6 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
