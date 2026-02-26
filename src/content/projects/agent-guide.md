@@ -5,6 +5,6 @@ icon: "🤖"
 stars: "1.6k"
 forks: "160"
 tags: ["AI Agent", "LangGraph", "RAG"]
-link: "https://github.com/adongwanai/AgentGuide"
+link: "https://adongwanai.github.io/AgentGuide/"
 order: 1
 ---
