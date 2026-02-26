@@ -1,0 +1,30 @@
+---
+---
+  <section class="py-24 bg-gray-100 dark:bg-white/5 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">我的 AI 工作流</h2>
+        <p class="text-gray-600 dark:text-gray-400">从灵感到部署，Human-in-the-loop 的最佳实践</p>
+      </div>
+      
+      <div class="flex flex-col md:flex-row justify-between items-stretch gap-4 relative">
+        <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent -translate-y-1/2 z-0"></div>
+        
+        {[
+          { step: "01", title: "Ideation", tool: "Reasoning Models", desc: "从模糊想法到清晰规格", icon: "💡" },
+          { step: "02", title: "Frontend", tool: "Gemini 2 Pro", desc: "像素级 UI 生成与实现", icon: "🎨" },
+          { step: "03", title: "Backend", tool: "Claude Code", desc: "MCP & Agent Skills 核心逻辑", icon: "⚡" },
+          { step: "04", title: "Debug", tool: "Codex", desc: "智能代码审查与修复", icon: "🔧" },
+          { step: "05", title: "Online", tool: "CI/CD", desc: "全流程自动化部署闭环", icon: "🚀" }
+        ].map((item) => (
+          <div class="relative z-10 bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 p-6 rounded-xl w-full md:flex-1 hover:-translate-y-2 transition-transform duration-300 min-w-0">
+            <div class="text-4xl mb-4">{item.icon}</div>
+            <div class="text-xs font-mono text-accent mb-2">STEP {item.step}</div>
+            <h3 class="text-lg font-bold mb-1">{item.title}</h3>
+            <div class="text-xs text-blue-600 dark:text-blue-400 mb-3 font-mono">{item.tool}</div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>

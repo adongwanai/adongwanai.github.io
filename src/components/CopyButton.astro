@@ -1,0 +1,86 @@
+---
+---
+
+<script>
+  // Wait for the DOM to be ready
+  document.addEventListener("DOMContentLoaded", () => {
+    // Find all <pre> elements (code blocks)
+    const predefinedElements = document.querySelectorAll("pre");
+    
+    predefinedElements.forEach((preBlock) => {
+      // Make pre block relative to position the absolutely positioned copy button
+      if (window.getComputedStyle(preBlock).position === "static") {
+        preBlock.style.position = "relative";
+      }
+
+      // Create the copy button
+      const copyButton = document.createElement("button");
+      copyButton.className = "copy-code-button absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded p-1.5 transition-colors opacity-0 group-hover:opacity-100 flex items-center justify-center";
+      copyButton.setAttribute("aria-label", "Copy code");
+      copyButton.setAttribute("title", "Copy code");
+      
+      // Inline SVG for copy icon
+      copyButton.innerHTML = `
+        <svg fill="none" class="w-4 h-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+        </svg>
+      `;
+
+      // Add a group class to the pre block for hover effects
+      preBlock.classList.add("group");
+      
+      // Append the button to the <pre>
+      preBlock.appendChild(copyButton);
+
+      // Handle the copy event
+      copyButton.addEventListener("click", async () => {
+        // Find the <code> element inside the <pre>
+        const codeElement = preBlock.querySelector("code");
+        if (!codeElement) return;
+
+        // Get the text content
+        const textToCopy = codeElement.innerText;
+
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          
+          // Show checkmark icon indicating success
+          copyButton.innerHTML = `
+            <svg fill="none" class="w-4 h-4 text-green-400" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          `;
+          copyButton.classList.add("!opacity-100"); // Keep the button visible
+          
+          // Reset after 2 seconds
+          setTimeout(() => {
+            copyButton.innerHTML = `
+              <svg fill="none" class="w-4 h-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+              </svg>
+            `;
+            copyButton.classList.remove("!opacity-100");
+          }, 2000);
+          
+        } catch (err) {
+          console.error("Failed to copy code: ", err);
+        }
+      });
+    });
+  });
+</script>
+
+<style is:global>
+  /* Ensure the pre block allows interaction with the children and hides overflow correctly */
+  pre.group {
+    /* If there are scrollbars, the copy button should stay fixed to the top right of the container, NOT scroll out of view */
+    /* An alternative is wrapping the pre, but modifying pre is easier without full MDX setup */
+  }
+  
+  .copy-code-button {
+    /* We use !important to override specificity issues from shiki themes */
+    z-index: 10;
+  }
+</style>
