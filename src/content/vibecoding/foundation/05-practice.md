@@ -258,6 +258,19 @@ order: 6
 
 ---
 
+## 5.8 推荐进阶资源
+
+想继续深入？这些资源值得收藏：
+
+| 资源 | 说明 | 链接 |
+|------|------|------|
+| **Datawhale easy-vibe** | 从0到1最完整路径，含贪吃蛇到完整产品上线 | [GitHub](https://github.com/datawhalechina/easy-vibe) |
+| **宝玉 skills** | 内容生产神器：小红书图、封面、一键发布微信/X | [GitHub](https://github.com/JimLiu/baoyu-skills) |
+| **Anthropic 官方 skills** | Claude Skills 权威范本，教你写自定义技能 | [GitHub](https://github.com/anthropics/skills) |
+| **Awesome Vibe Coding** | 工具导航 + 对比（Cursor vs Claude Code vs v0） | [网站](https://awesome-vibe-coding.com) |
+
+---
+
 ## 下章预告
 
 > [第 6 章：精进 —— 从能用到好用](/vibecoding/foundation/advanced)

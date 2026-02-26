@@ -266,6 +266,60 @@ Agent 4（发布推送）：发送到 Telegram/微信/邮件
 
 ---
 
+## 6.6 内容生产神器：宝玉 Skills
+
+> **来自 @JimLiu 的 baoyu-skills**，小红书/微信/X 一键生成+发布
+
+### 核心技能列表
+
+| 技能 | 功能 | 使用场景 |
+|------|------|---------|
+| **baoyu-xhs-images** | 小红书爆款信息图 | 内容变现 |
+| **baoyu-cover-image** | 文章封面图 | ���客/公众号 |
+| **baoyu-comic** | 知识漫画 | 趣味科普 |
+| **baoyu-slide-deck** | 幻灯片图片 | 演讲/分享 |
+| **baoyu-post-to-wechat** | 发布到微信公众号 | 自动发布 |
+| **baoyu-post-to-x** | 发布到 X (Twitter) | 自动发布 |
+
+### 安装方式
+
+```bash
+# 克隆仓库
+git clone https://github.com/JimLiu/baoyu-skills
+
+# 按需安装对应 skill
+```
+
+**GitHub**：https://github.com/JimLiu/baoyu-skills
+
+---
+
+## 6.7 推荐进阶资源
+
+### 学习路径
+
+| 资源 | 说明 | 适合人群 |
+|------|------|---------|
+| **[Datawhale easy-vibe](https://github.com/datawhalechina/easy-vibe)** | 从0到1最完整路径，含贪吃蛇到完整产品上线 | 想系统学习的 |
+| **[Anthropic 官方 skills](https://github.com/anthropics/skills)** | Claude Skills 权威范本，教你写自定义技能 | 想深入 Claude 的 |
+| **[Awesome Vibe Coding](https://awesome-vibe-coding.com)** | 工具导航 + 对比（Cursor vs Claude Code vs v0） | 选工具的 |
+
+### 工具接入
+
+| 资源 | 说明 |
+|------|------|
+| **[awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)** | 500+ 工具接入（Gmail/Slack/GitHub） |
+| **[vibe-coding-cn](https://github.com/2025Emma/vibe-coding-cn)** | 中文社区最完整提示词库 |
+
+### 保持前沿
+
+| 站点 | 说明 |
+|------|------|
+| [Skills.sh](https://skills.sh) | Skills 聚合站 |
+| [Claude Marketplaces](https://claude.ai) | 官方技能市场 |
+
+---
+
 ## 下章预告
 
 > [实战演练：构建 SEO 优化的个人主页](/vibecoding/foundation/personal-website)
