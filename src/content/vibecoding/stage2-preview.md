@@ -1,7 +1,7 @@
 ---
 title: "第二阶段：超级个体实战库"
 description: "第二阶段付费内容预览。包含 30+ 真实赚钱项目全套 Prompt、社区精选案例、每月 1v1 复盘指导。"
-category: vibecoding
+category: article
 level: advanced
 tier: premium
 estimatedTime: "持续更新"

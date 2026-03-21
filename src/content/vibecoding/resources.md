@@ -1,8 +1,8 @@
 ---
 title: "工具资源站"
 description: "2026 年最全 Vibe Coding 工具导航 + 技能资源聚合。Cursor、Claude Code、Antigravity 等工具对比，以及 500+ Skills 接入指南。"
-category: vibecoding
-level: all
+category: article
+level: beginner
 tier: free
 estimatedTime: "30 min read"
 tags: ["tools", "resources", "skills", "navigation"]
