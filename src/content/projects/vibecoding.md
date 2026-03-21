@@ -1,11 +1,11 @@
 ---
 title: "VibeCoding 开发范式"
-description: "Tri-AI 协同开发范式 | Gemini + Claude + Claude Code | AI Native 工作流"
+description: "开箱即用的 Agent 快速启动模板 | VibeCoding 最佳实践 | AI Native 工作流"
 icon: "🚀"
 stars: "3"
 forks: "0"
 tags: ["VibeCoding", "AI Native", "Claude Code", "Tri-AI"]
-link: "https://github.com/adongwanai/adong-vibecoding"
+link: "https://github.com/adongwanai/agent-ready-template"
 order: 3
 ---
 

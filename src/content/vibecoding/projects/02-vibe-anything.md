@@ -1,6 +1,6 @@
 ---
 title: "VibeAnything：核心底座与构建流"
-description: "学习构建可复用的 AI Agent 底层架构。掌握模块���设计、插件系统、配置管理等核心概念，为后续所有项目打下坚实基础。"
+description: "学习构建可复用的 AI Agent 底层架构。掌握模块化设计、插件系统、配置管理等核心概念，为后续所有项目打下坚实基础。"
 category: project
 level: advanced
 tier: premium
